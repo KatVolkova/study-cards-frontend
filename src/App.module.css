@@ -1,0 +1,35 @@
+/* General Styles */
+.App {
+    padding-top: 70px; 
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+    background-color: #f8f8f8;
+  }
+
+/* Navigation Bar */
+
+.navLink {
+    color: #444;
+    font-weight: 500;
+    margin-left: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navLink i {
+    margin-right: 6px;
+  }
+  
+  .navLink:hover {
+    color: #4a4e69;
+    text-decoration: none;
+    border-bottom: 2px solid #4a4e69;
+  }
+  
+  .active {
+    color: #4a4e69;
+    font-weight: 600;
+    border-bottom: 2px solid #4a4e69;
+  }
