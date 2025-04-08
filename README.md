@@ -36,7 +36,6 @@ A personalized favicon has been added to enhance branding and improve user exper
 
 
 
-
 #### Navigation
 
 ![]()
@@ -80,11 +79,15 @@ Screenshots below show an example of the colour palette:
 
 ### Typography
 The website uses the following font styles for its design:
-- **Arial**: Used as the general font for the body text across the site.
-- **Lato**: Applied to the branding elements and `h2` headings for a clean and modern appearance.
-![Lato Google Fonts]()
-- **Roboto**: Used for `h3` headings, providing a professional and readable style.
+- **Roboto**: Used as the general font for the body text across the site.
 ![ROBOTO Google Fonts]()
+- **Poppins**: Applied to headings (h1, h2, h3, h4) to draw attention and clearly separates titles and important sections.
+![Poppins Google Fonts]()
+- **Rubik**: Used for special or secondary text to add visual contrast and highlight accent information without overpowering the main content.
+![Rubik Google Fonts]()
+- **Fira Code**: Chosen for code blocks to enhance readability and clarity
+![Fira COde Google Fonts]()
+
 The screenshot below is an example of the above styles combination:
 ![Typography example]()
 
