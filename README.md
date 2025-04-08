@@ -24,8 +24,18 @@ Visit the deployed site: [Study Cards App]()
 
 #### Favicon
 
+**Custom Favicon**
 
 ![](documentation/features/favicon.png)
+
+A personalized favicon has been added to enhance branding and improve user experience in the browser tab.
+
+**Details**:
+- The favicon is a simplified version of the StudyCards logo.
+- It helps distinguish the tab visually among others.
+
+
+
 
 #### Navigation
 
