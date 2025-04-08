@@ -12,11 +12,20 @@ Return to the [project name README.md](README.md).
 
 ## Features Testing
 
+### Favicon
+
+| **Feature**     | **Action**                     | **Expected Result**                                                  | **Actual Result**                                                  |
+|------------------|-------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------|
+| Custom Favicon   | Open the site in a browser tab | The browser tab displays the MemoCards favicon  | Favicon loads successfully and matches brand                    |
+
 ### Naviagation Bar
 
-| **Feature**     |**Action**  | **Expected Result** | **Actual Result** |
-|--------------------|------------------| -----------| -----------------|
-|                    |                   |           |                   |
+| **Feature**     | **Action**                                   | **Expected Result**                                                                 | **Actual Result**                                                                 |
+|------------------|----------------------------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| Logo             | View the top-left of the navigation bar      | The StudyCards logo is displayed and properly aligned                                |  Logo appears and aligns correctly                                              |
+| Navigation Links | Hover over the navigation links              | Links change style (color/underline) with a smooth transition                       |  Hover effects are functional and consistent                                    |
+| Active Link      | Navigate to a page (e.g., Home)              | The active link is underlined to indicate the current page                          | The correct link shows an underline                                            |
+| Responsiveness   | Resize the browser to mobile view            | Navbar remains responsive with a clean and accessible layout                        | Fully responsive across screen sizes                                           |
 
 
 ### Footer
