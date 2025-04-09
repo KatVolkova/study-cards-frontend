@@ -33,11 +33,10 @@ Return to the [project name README.md](README.md).
 | **Feature**              | **Action**                                                          | **Expected Result**                                                                                       | **Actual Result** |
 |--------------------------|---------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-------------------|
 | Footer Placement         | Load the app and scroll to the bottom                               | The footer remains pinned at the bottom of the viewport                                                   |                   |
-| App Name Display         | Inspect the footer                                                  | Displays "© [current year] StudyCards" (with the current year dynamically rendered)                        |                   |
 | Social Media Links       | Click on each social media icon (Facebook, Twitter, Instagram)        | Each icon opens the corresponding social network in a new tab                                             |                   |
-| Icon Hover Effect        | Hover the mouse pointer over a social icon                          | The icon transitions to a different color (e.g., changes to #4a4e69) as per the hover styling in CSS         |                   |
+| Icon Hover Effect        | Hover the mouse pointer over a social icon                          | The icon transitions to a different color as per the hover styling in CSS         |                   |
 | Responsive Layout        | Resize the browser window or test on mobile devices                 | The footer layout adjusts appropriately and remains fully visible on all screen sizes                         |                   |
-                |                   |           |                   |
+        
 
 
 ## Code Validation

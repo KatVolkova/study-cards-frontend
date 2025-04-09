@@ -14,11 +14,13 @@ function App() {
     <div className={styles.App}>
     <Router>
       <NavigationBar />
+      <main className={styles.MainContent}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      </main>
       <Footer />
     </Router>
   </div>

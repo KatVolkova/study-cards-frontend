@@ -1,6 +1,8 @@
 /* General Styles */
 .App {
-    padding-top: 70px; 
+    margin: 0;
+    display: flex;                
+    flex-direction: column; 
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
     background-color: #f8f8f8;
@@ -32,6 +34,14 @@
     color: #4a4e69;
     font-weight: 600;
     border-bottom: 2px solid #4a4e69;
+  }
+
+  /* Main Content */
+
+  .MainContent {
+    flex: 1; 
+    padding-top: 70px; 
+    
   }
 
   /* Footer */
