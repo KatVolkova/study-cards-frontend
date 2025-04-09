@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styles from '../styles/AuthForm.module.css';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -85,27 +86,25 @@ function Register() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "0 auto" }}>
-      <h2>Register</h2>
+    <div className={styles.formContainer}>
+      <h2 className={styles.formTitle}>Registration Form</h2>
 
       {successMessage && (
-        <div style={{ color: "green", marginBottom: "1rem" }}>
-          {successMessage}
-        </div>
+        <div className={styles.successMessage}>{successMessage}</div>
       )}
 
       {errors.length > 0 && (
-        <div style={{ color: "red", marginBottom: "1rem" }}>
-          <ul>
+        <div className={styles.errorContainer}>
+          <ul className={styles.errorList}>
             {errors.map((err, index) => (
-              <li key={index}>{err}</li>
+              <li key={index} className={styles.alertBox}>{err}</li>
             ))}
           </ul>
         </div>
       )}
 
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div className={styles.formInput}>
           <input
             type="text"
             name="username"
@@ -113,10 +112,10 @@ function Register() {
             value={formData.username}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "0.5rem" }}
+            className={styles.inputField}
           />
         </div>
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div className={styles.formInput}>
           <input
             type="email"
             name="email"
@@ -124,10 +123,10 @@ function Register() {
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "0.5rem" }}
+            className={styles.inputField}
           />
         </div>
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div className={styles.formInput}>
           <input
             type="password"
             name="password1"
@@ -135,10 +134,10 @@ function Register() {
             value={formData.password1}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "0.5rem" }}
+            className={styles.inputField}
           />
         </div>
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div className={styles.formInput}>
           <input
             type="password"
             name="password2"
@@ -146,15 +145,15 @@ function Register() {
             value={formData.password2}
             onChange={handleChange}
             required
-            style={{ width: "100%", padding: "0.5rem" }}
+            className={styles.inputField}
           />
         </div>
-        <button type="submit" style={{ padding: "0.5rem 1rem" }}>
-          Register
+        <button type="submit" className={styles.formButton}>
+          Submit
         </button>
       </form>
 
-      <div style={{ marginTop: "1rem" }}>
+      <div className={styles.formSubtitle}>
         <h3>Password Requirements:</h3>
         <ul>
           <li>At least 8 characters long</li>

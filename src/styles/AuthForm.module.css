@@ -1,0 +1,84 @@
+  /* Container for the form */
+  .formContainer {
+    max-width: 400px !important;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Title for the form */
+  .formTitle {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  /* Container for each input field */
+  .formInput {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for input fields */
+  .inputField {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Button */
+  .formButton {
+    width: 100%;
+    background-color: #ffc107;
+    border: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .formButton:hover {
+    background-color: #e0a800; 
+    transform: scale(1.02); 
+  }
+  
+  /* Subtitle for form sections */
+  .formSubtitle {
+    text-align: center;
+  }
+  
+  
+  .formSubtitle ul {
+    list-style-type: disc;
+    text-align: left;
+    padding-left: 1.2rem;
+  }
+  
+  /* Styling for error messages */
+  .alertBox {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .errorContainer {
+    color: red;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .errorList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+
+  .successMessage {
+    color: green;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
