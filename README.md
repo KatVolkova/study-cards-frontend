@@ -58,7 +58,6 @@ Styling & Behavior:
 #### Footer
 
 ![]()
-### Footer
 
 The footer is pinned to the bottom of the page,  it displays:
 
