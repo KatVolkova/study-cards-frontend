@@ -58,6 +58,14 @@ Styling & Behavior:
 #### Footer
 
 ![]()
+### Footer
+
+The footer is pinned to the bottom of the page,  it displays:
+
+- A set of social media icons (Facebook, Twitter, Instagram). 
+- Hover effects for icons, changing their color upon interaction to enhance user feedback.
+
+This design ensures that users can always access key information about our application and follow us on social platforms, regardless of where they are on the page.
 
 
 
