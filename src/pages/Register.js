@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/AuthForm.module.css';
 
 function Register() {
@@ -11,6 +12,7 @@ function Register() {
   });
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,6 +30,7 @@ function Register() {
       );
       setSuccessMessage("Registration successful!");
       console.log("Response:", response.data);
+      navigate("/");
     } catch (error) {
       console.error("Registration error:", error);
       const errorMessages = [];
