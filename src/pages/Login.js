@@ -34,9 +34,20 @@ function Login() {
         formData
       );
       
-      const { key, username } = response.data; 
+      const {key} = response.data; 
       localStorage.setItem("token", key);
-      localStorage.setItem("username", username);  
+      const userResponse = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/auth/user/`,
+        {
+          headers: {
+            Authorization: `Token ${key}`,
+          },
+        }
+      );
+
+
+      const fetchedUsername = userResponse.data.username;
+      localStorage.setItem("username", fetchedUsername);  
       setSuccessMessage("Login successful!");
       navigate("/flashcards"); 
     } catch (error) {
