@@ -36,6 +36,27 @@
     border-bottom: 2px solid #4a4e69;
   }
 
+  /* Greeting for logged-in users */
+
+  .greeting {
+    color: #444;
+    font-weight: 500;
+    margin-right: 1rem;
+  }
+  
+  .logoutButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #444;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .logoutButton:hover {
+    color: #4a4e69;
+  }
+
   /* Main Content */
 
   .MainContent {

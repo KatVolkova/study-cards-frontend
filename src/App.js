@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Footer from './components/Footer';
+import FlashcardsList from './components/FlashcardsList';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/flashcards" element={<FlashcardsList />} />
       </Routes>
       </main>
       <Footer />

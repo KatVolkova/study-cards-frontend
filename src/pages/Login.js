@@ -8,7 +8,6 @@ function Login() {
   // Initialize state with username, email, and password
   const [formData, setFormData] = useState({
     username: '',
-    email: '',
     password: '',
   });
   const [errors, setErrors] = useState([]);
@@ -16,7 +15,7 @@ function Login() {
   const navigate = useNavigate();
 
   // Destructure formData for ease of use
-  const { username, email, password } = formData;
+  const {username, password } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,19 +23,22 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Login form submitted");
     setErrors([]);
     setSuccessMessage('');
 
     try {
-      // Send login data. 
-      // Your back end must be prepared to look at both username and email for authentication.
-      await axios.post(
+      // Send a POST request to the login endpoint.
+      const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/auth/login/`,
         formData
       );
+      
+      const { key, username } = response.data; 
+      localStorage.setItem("token", key);
+      localStorage.setItem("username", username);  
       setSuccessMessage("Login successful!");
-      console.log("Login successful!");
-      navigate("/"); // Redirect to home page after successful login
+      navigate("/flashcards"); 
     } catch (error) {
       console.error("Login error:", error);
       const errorMessages = [];
@@ -105,17 +107,6 @@ function Login() {
             name="username"
             placeholder="Username"
             value={username}
-            onChange={handleChange}
-            required
-            className={styles.inputField}
-          />
-        </div>
-        <div className={styles.formInput}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={email}
             onChange={handleChange}
             required
             className={styles.inputField}
