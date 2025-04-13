@@ -89,6 +89,19 @@
   }
   
   .cardActions {
-    margin-top: 8px;
+    margin-top: 10px;
+  }
+
+  /* Delete button */
+  
+  .deleteButton {
+    background-color: transparent;
+    color: #dc3545;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
   }
   
+  .deleteButton:hover {
+    text-decoration: underline;
+  }

@@ -39,7 +39,26 @@ function FlashcardsList() {
     };
     fetchFlashcards();
   }, []);
-
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this flashcard?");
+    if (!confirmDelete) return;
+  
+    const token = localStorage.getItem("token");
+  
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/flashcards/${id}/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+  
+      // Remove deleted card from the state
+      setFlashcards((prevCards) => prevCards.filter((card) => card.id !== id));
+    } catch (err) {
+      console.error("Error deleting flashcard:", err);
+      alert("Failed to delete flashcard. Please try again.");
+    }
+  };
   if (loading) {
     return <div className={styles.loading}>Loading...</div>;
   }
@@ -71,6 +90,12 @@ function FlashcardsList() {
       <Link to={`/flashcards/${card.id}/edit`} className={styles.editButton}>
         ✏️ Edit
       </Link>
+      <button
+      onClick={() => handleDelete(card.id)}
+      className={styles.deleteButton}
+        >
+      🗑️ Delete
+      </button>
     </div>
             </li>
           ))}
