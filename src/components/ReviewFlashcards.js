@@ -3,11 +3,21 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Review.module.css';
 
+function shuffleArray(array) {
+    return array
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+  }
+  
 function ReviewFlashcards() {
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const [streak, setStreak] = useState(0);
+
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -16,9 +26,11 @@ function ReviewFlashcards() {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/flashcards/`, {
           headers: { Authorization: `Token ${token}` }
         });
-        setCards(res.data);
+        setCards(shuffleArray(res.data));
+        setLoading(false);
       } catch (err) {
         console.error("Failed to load flashcards:", err);
+        setLoading(false);
       }
     };
     fetchCards();
@@ -27,6 +39,8 @@ function ReviewFlashcards() {
     setCurrentIndex(0);
     setShowAnswer(false);
     setResults([]);
+    setStreak(0);
+    setCards(shuffleArray(cards));
   };
   const handleFlip = () => {
     setShowAnswer(!showAnswer);
@@ -37,17 +51,33 @@ function ReviewFlashcards() {
         ...prevResults,
         { id: cards[currentIndex].id, correct },
       ]);
+
+    setStreak((prevStreak) => (correct ? prevStreak + 1 : 0));
     setShowAnswer(false);
     setCurrentIndex(currentIndex + 1);
   };
-
-  if (cards.length === 0) return <p>No flashcards to review!</p>;
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <p>Loading flashcards...</p>
+      </div>
+    );
+  }
+  if (cards.length === 0) {
+    return (
+      <div className={styles.emptyMessage}>
+        <p>No flashcards to review!</p>
+        <Link to="/flashcards/create" className={styles.reviewAgain}>
+          ➕ Create Your First Flashcard
+        </Link>
+      </div>
+    );
+  }
   if (currentIndex >= cards.length) {
     const correctCount = results.filter(r => r.correct).length;
     const total = results.length;
     const score = Math.round((correctCount / total) * 100);
     
-      
     return (
       <div className={styles.reviewEnd}>
         <h2>Review Complete! ✅</h2>
@@ -69,7 +99,11 @@ function ReviewFlashcards() {
   const currentCard = cards[currentIndex];
 
   return (
+    
     <div className={styles.reviewContainer}>
+        <div className={styles.streak}>
+      🔥 Current Streak: {streak}
+    </div>
       <div className={styles.card} onClick={handleFlip}>
         <p>{showAnswer ? currentCard.answer : currentCard.question}</p>
         <span className={styles.flipHint}>(click to flip)</span>
