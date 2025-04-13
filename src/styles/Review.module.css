@@ -49,3 +49,42 @@
     margin-top: 60px;
   }
   
+  .reviewActions {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .reviewAgain,
+  .backToList,
+  .backHome {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 220px;
+    text-align: center;
+  }
+  
+  .reviewAgain {
+    background-color: #6c63ff;
+    color: #fff;
+  }
+  
+  .backToList {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  .backHome {
+    background-color: #20c997;
+    color: #fff;
+  }
+  
+  .reviewAgain:hover,
+  .backToList:hover,
+  .backHome:hover {
+    opacity: 0.9;
+  }
