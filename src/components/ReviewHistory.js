@@ -4,7 +4,15 @@ import styles from '../styles/Review.module.css';
 
 function ReviewHistory() {
   const history = JSON.parse(localStorage.getItem('reviewHistory')) || [];
-
+  
+const handleClearHistory = () => {
+    const confirmClear = window.confirm("Are you sure you want to delete all review history?");
+    if (confirmClear) {
+      localStorage.removeItem('reviewHistory');
+      window.location.reload(); // quick refresh to re-render the cleared state
+    }
+  };
+  
   return (
     <div className={styles.reviewContainer}>
       <h2 className={styles.header}>📅 Review History</h2>
@@ -32,9 +40,14 @@ function ReviewHistory() {
             ))}
           </tbody>
         </table>
+        
       )}
-
-      <Link to="/" className={styles.backHome}>🏠 Back to Home</Link>
+      <div className={styles.historyActions}>
+  <button onClick={handleClearHistory} className={styles.clearBtn}>
+    🧹 Clear History
+  </button>
+  <Link to="/" className={styles.backHome}>🏠 Back to Home</Link>
+</div>
     </div>
   );
 }
