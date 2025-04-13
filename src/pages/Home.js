@@ -11,9 +11,15 @@ function Home() {
       <h1>Welcome to Study Cards Home Page</h1>
 
       {token && (
+        <>
         <Link to="/flashcards/create" className={styles.createBtn}>
           + Create Flashcard
         </Link>
+        
+        <Link to="/flashcards/review" className={styles.reviewButton}>
+            🔁 Review Flashcards
+          </Link>
+        </>
       )}
     </div>
   );

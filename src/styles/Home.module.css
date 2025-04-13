@@ -1,3 +1,5 @@
+/* Buttons */
+/* Create button */
 .createBtn {
     display: inline-block;
     margin-top: 20px;
@@ -12,5 +14,22 @@
   
   .createBtn:hover {
     background-color: #ffb700;
+  }
+  
+  /* Review button */
+
+  .reviewButton {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #6c63ff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+  
+  .reviewButton:hover {
+    background-color: #574fce;
   }
   

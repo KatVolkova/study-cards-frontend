@@ -1,0 +1,51 @@
+.reviewContainer {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 600px;
+  }
+  
+  .card {
+    border: 2px solid #6c63ff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    min-height: 150px;
+  }
+  
+  .flipHint {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 10px;
+  }
+  
+  .answerButtons {
+    margin-top: 20px;
+  }
+  
+  .correctBtn, .incorrectBtn {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .correctBtn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .incorrectBtn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .reviewEnd {
+    text-align: center;
+    margin-top: 60px;
+  }
+  
