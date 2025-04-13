@@ -67,6 +67,11 @@ function FlashcardsList() {
               <p className={styles.answer}>{card.answer}</p>
               {card.topic && <span className={styles.topic}>Topic: {card.topic}</span>}
               <span className={styles.status}>Status: {card.status}</span>
+              <div className={styles.cardActions}>
+      <Link to={`/flashcards/${card.id}/edit`} className={styles.editButton}>
+        ✏️ Edit
+      </Link>
+    </div>
             </li>
           ))}
         </ul>

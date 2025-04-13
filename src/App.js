@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import Footer from './components/Footer';
 import FlashcardsList from './components/FlashcardsList';
 import CreateFlashcard from './components/CreateFlashcard';
+import EditFlashcard from './components/EditFlashcard';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/flashcards" element={<FlashcardsList />} />
         <Route path="/flashcards/create" element={<CreateFlashcard />} />
+        <Route path="/flashcards/:id/edit" element={<EditFlashcard />} />
       </Routes>
       </main>
       <Footer />

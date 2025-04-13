@@ -74,3 +74,21 @@
     background-color: #ffb700;
   }
   
+  /* Edit button */
+
+  .editButton {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .editButton:hover {
+    text-decoration: underline;
+  }
+  
+  .cardActions {
+    margin-top: 8px;
+  }
+  
