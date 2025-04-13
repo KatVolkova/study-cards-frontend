@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Footer from './components/Footer';
 import FlashcardsList from './components/FlashcardsList';
+import CreateFlashcard from './components/CreateFlashcard';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/flashcards" element={<FlashcardsList />} />
+        <Route path="/flashcards/create" element={<CreateFlashcard />} />
       </Routes>
       </main>
       <Footer />

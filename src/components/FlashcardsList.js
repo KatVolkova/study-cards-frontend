@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../styles/Flashcards.module.css'; 
 
@@ -50,6 +51,12 @@ function FlashcardsList() {
   return (
     <div className={styles.flashcardsContainer}>
       <h2 className={styles.header}>My Flashcards</h2>
+      <button className={styles.createButton}>
+  <Link to="/flashcards/create" style={{ textDecoration: 'none', color: 'inherit' }}>
+    + Create Flashcard
+  </Link>
+</button>
+
       {flashcards.length === 0 ? (
         <p>No flashcards found. Try creating one!</p>
       ) : (

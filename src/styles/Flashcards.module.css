@@ -53,3 +53,24 @@
     color: #666;
   }
   
+
+  /* Button */
+
+  .createButton {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .createButton:hover {
+    background-color: #ffb700;
+  }
+  
