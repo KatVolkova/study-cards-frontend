@@ -56,6 +56,20 @@ function ReviewFlashcards() {
     setShowAnswer(false);
     setCurrentIndex(currentIndex + 1);
   };
+
+  const saveReviewToHistory = (score, total, correct, date = new Date()) => {
+    const historyItem = {
+      date: date.toLocaleString(),
+      correct,
+      total,
+      score,
+    };
+  
+    const existing = JSON.parse(localStorage.getItem('reviewHistory')) || [];
+    const updated = [historyItem, ...existing];
+    localStorage.setItem('reviewHistory', JSON.stringify(updated));
+  };
+
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -77,6 +91,8 @@ function ReviewFlashcards() {
     const correctCount = results.filter(r => r.correct).length;
     const total = results.length;
     const score = Math.round((correctCount / total) * 100);
+
+    saveReviewToHistory(score, total, correctCount);
     
     return (
       <div className={styles.reviewEnd}>

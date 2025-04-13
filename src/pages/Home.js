@@ -19,6 +19,12 @@ function Home() {
         <Link to="/flashcards/review" className={styles.reviewButton}>
             🔁 Review Flashcards
           </Link>
+
+          <Link to="/flashcards/history" className={styles.historyBtn}>
+            📅 View Review History
+          
+          </Link>
+
         </>
       )}
     </div>

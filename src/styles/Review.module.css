@@ -115,3 +115,59 @@
     text-align: center;
   }
   
+  /* History review section */
+
+  /* For the table container */
+.reviewContainer {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header styling */
+.header {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+/* History table */
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+.historyTable th,
+.historyTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.historyTable th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.historyTable tr:nth-child(even) {
+  background-color: #f4f6f8;
+}
+
+/* Back to home button */
+.backHome {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #20c997;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.backHome:hover {
+  background-color: #179e81;
+}
