@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import api from '../utils/api';
 import styles from '../styles/Review.module.css';
 
 function shuffleArray(array) {
@@ -21,15 +21,12 @@ function ReviewFlashcards() {
   const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [reviewEnded, setReviewEnded] = useState(false);
 
-  const fetchCards = useCallback(async (url = `${process.env.REACT_APP_API_URL}/api/flashcards/`) => {
+  const fetchCards = useCallback(async (url = `/api/flashcards/`) => {
     if (isFetchingMore || reviewEnded) return;
     setIsFetchingMore(true);
 
-    const token = localStorage.getItem('token');
     try {
-      const res = await axios.get(url, {
-        headers: { Authorization: `Token ${token}` },
-      });
+      const res = await api.get(url);
 
       setCards((prev) => {
         const existingIds = new Set(prev.map(card => card.id));
@@ -92,15 +89,8 @@ function ReviewFlashcards() {
   };
 
   const saveReviewToServer = useCallback(async (score, total, correct) => {
-    const token = localStorage.getItem('token');
     try {
-      await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/review-history/`,
-        { score, total, correct },
-        {
-          headers: { Authorization: `Token ${token}` },
-        }
-      );
+      await api.post('/api/review-history/', { score, total, correct });
     } catch (err) {
       console.error("Failed to save review history to server:", err);
     }
