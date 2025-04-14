@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../styles/AuthForm.module.css';
+import api from '../utils/api';
 
 function EditFlashcard() {
   const { id } = useParams();
@@ -17,13 +17,7 @@ function EditFlashcard() {
   useEffect(() => {
     const fetchFlashcard = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/flashcards/${id}/`,
-          {
-            headers: { Authorization: `Token ${token}` },
-          }
-        );
+        const response = await api.get(`/api/flashcards/${id}/`);
         setFormData(response.data);
       } catch (err) {
         console.error('Error loading flashcard:', err);
@@ -43,19 +37,9 @@ function EditFlashcard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
 
     try {
-      await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/flashcards/${id}/`,
-        formData,
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      await api.put(`/api/flashcards/${id}/`, formData);
       navigate('/flashcards');
     } catch (err) {
       console.error('Error updating flashcard:', err);

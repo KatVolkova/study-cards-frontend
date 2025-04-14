@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import styles from '../styles/Flashcards.module.css'; 
 
 function FlashcardsList() {
@@ -12,23 +12,7 @@ function FlashcardsList() {
   useEffect(() => {
     const fetchFlashcards = async () => {
       try {
-        // Retrieve the token from localStorage.
-        const token = localStorage.getItem('token');
-
-        // If token does not exist, set an error message.
-        if (!token) {
-          setError('User not authenticated. Please log in.');
-          setLoading(false);
-          return;
-        }
-
-        // Set up headers with the token.
-        const config = {
-          headers: { Authorization: `Token ${token}` } // or use `Bearer ${token}` if needed
-        };
-        // Make the GET request with the Authorization header.
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/flashcards/`, config);
-
+        const response = await api.get('/api/flashcards/');
         setFlashcards(response.data.results);
       } catch (err) {
         console.error("Error fetching flashcards:", err);
@@ -43,16 +27,8 @@ function FlashcardsList() {
     const confirmDelete = window.confirm("Are you sure you want to delete this flashcard?");
     if (!confirmDelete) return;
   
-    const token = localStorage.getItem("token");
-  
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/flashcards/${id}/`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      });
-  
-      // Remove deleted card from the state
+      await api.delete(`/api/flashcards/${id}/`);
       setFlashcards((prevCards) => prevCards.filter((card) => card.id !== id));
     } catch (err) {
       console.error("Error deleting flashcard:", err);

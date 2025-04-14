@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/AuthForm.module.css'; // reuse styling if you want
+import styles from '../styles/AuthForm.module.css'; 
+import api from '../utils/api';
 
 function CreateFlashcard() {
   const [formData, setFormData] = useState({
@@ -23,20 +23,9 @@ function CreateFlashcard() {
     e.preventDefault();
     setErrors([]);
 
-    const token = localStorage.getItem('token');
 
     try {
-      await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/flashcards/`,
-        formData,
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
+      await api.post('/api/flashcards/', formData);
       navigate('/flashcards');
     } catch (error) {
       const messages = [];
