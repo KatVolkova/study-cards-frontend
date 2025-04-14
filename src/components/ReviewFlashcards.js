@@ -57,6 +57,21 @@ function ReviewFlashcards() {
     setCurrentIndex(currentIndex + 1);
   };
 
+  const saveReviewToServer = async (score, total, correct) => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/review-history/`,
+        { score, total, correct },
+        {
+          headers: { Authorization: `Token ${token}` },
+        }
+      );
+    } catch (err) {
+      console.error("Failed to save review history to server:", err);
+    }
+  };  
+
   const saveReviewToHistory = (score, total, correct, date = new Date()) => {
     const historyItem = {
       date: date.toLocaleString(),
@@ -64,11 +79,12 @@ function ReviewFlashcards() {
       total,
       score,
     };
-  
+
     const existing = JSON.parse(localStorage.getItem('reviewHistory')) || [];
     const updated = [historyItem, ...existing];
     localStorage.setItem('reviewHistory', JSON.stringify(updated));
   };
+
 
   if (loading) {
     return (
@@ -93,6 +109,7 @@ function ReviewFlashcards() {
     const score = Math.round((correctCount / total) * 100);
 
     saveReviewToHistory(score, total, correctCount);
+    saveReviewToServer(score, total, correctCount);
     
     return (
       <div className={styles.reviewEnd}>

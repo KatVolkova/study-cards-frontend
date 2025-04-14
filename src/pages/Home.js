@@ -25,6 +25,11 @@ function Home() {
           
           </Link>
 
+          <Link to="/flashcards/history-server" className={styles.historyBtn}>
+          📡 View Server History
+          </Link>
+
+
         </>
       )}
     </div>
