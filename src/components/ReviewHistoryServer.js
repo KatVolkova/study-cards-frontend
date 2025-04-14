@@ -30,6 +30,11 @@ function ReviewHistoryServer() {
     return item.score > max ? item.score : max;
   }, 0);
 
+  const longestStreak = history.reduce((max, item) => {
+    return item.streak > max ? item.streak : max;
+  }, 0);
+  
+
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -44,6 +49,7 @@ function ReviewHistoryServer() {
       {history.length > 0 && (
       <div className={styles.statsBar}>
         <p>🏆 Best Score: <strong>{bestScore}%</strong></p>
+        <p>🔥 Longest Streak: <strong>{longestStreak}</strong></p>
       </div>
     )}
 

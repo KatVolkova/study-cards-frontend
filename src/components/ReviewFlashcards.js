@@ -78,6 +78,7 @@ function ReviewFlashcards() {
       correct,
       total,
       score,
+      streak,
     };
 
     const existing = JSON.parse(localStorage.getItem('reviewHistory')) || [];
