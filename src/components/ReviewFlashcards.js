@@ -1,63 +1,97 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Review.module.css';
 
 function shuffleArray(array) {
-    return array
-      .map((value) => ({ value, sort: Math.random() }))
-      .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value);
-  }
-  
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+}
+
 function ReviewFlashcards() {
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [streak, setStreak] = useState(0);
+  const [nextPage, setNextPage] = useState(null);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [reviewEnded, setReviewEnded] = useState(false);
 
+  const fetchCards = useCallback(async (url = `${process.env.REACT_APP_API_URL}/api/flashcards/`) => {
+    if (isFetchingMore || reviewEnded) return;
+    setIsFetchingMore(true);
+
+    const token = localStorage.getItem('token');
+    try {
+      const res = await axios.get(url, {
+        headers: { Authorization: `Token ${token}` },
+      });
+
+      setCards((prev) => {
+        const existingIds = new Set(prev.map(card => card.id));
+        const newCards = shuffleArray(res.data.results).filter(card => !existingIds.has(card.id));
+        return [...prev, ...newCards];
+      });
+
+      setNextPage(res.data.next);
+      setLoading(false);
+    } catch (err) {
+      console.error("Failed to load flashcards:", err);
+      setLoading(false);
+    } finally {
+      setIsFetchingMore(false);
+    }
+  }, [isFetchingMore, reviewEnded]);
 
   useEffect(() => {
-    const fetchCards = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/flashcards/`, {
-          headers: { Authorization: `Token ${token}` }
-        });
-        setCards(shuffleArray(res.data));
-        setLoading(false);
-      } catch (err) {
-        console.error("Failed to load flashcards:", err);
-        setLoading(false);
+    fetchCards();
+  }, [fetchCards]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop >=
+          document.documentElement.offsetHeight - 100 &&
+        nextPage
+      ) {
+        fetchCards(nextPage);
       }
     };
-    fetchCards();
-  }, []);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [nextPage, fetchCards]);
+
   const handleReviewAgain = () => {
+    setCards([]);
     setCurrentIndex(0);
     setShowAnswer(false);
     setResults([]);
     setStreak(0);
-    setCards(shuffleArray(cards));
+    setReviewEnded(false);
+    fetchCards();
   };
+
   const handleFlip = () => {
     setShowAnswer(!showAnswer);
   };
 
   const handleAnswer = (correct) => {
     setResults((prevResults) => [
-        ...prevResults,
-        { id: cards[currentIndex].id, correct },
-      ]);
+      ...prevResults,
+      { id: cards[currentIndex].id, correct },
+    ]);
 
     setStreak((prevStreak) => (correct ? prevStreak + 1 : 0));
     setShowAnswer(false);
     setCurrentIndex(currentIndex + 1);
   };
 
-  const saveReviewToServer = async (score, total, correct) => {
+  const saveReviewToServer = useCallback(async (score, total, correct) => {
     const token = localStorage.getItem('token');
     try {
       await axios.post(
@@ -70,23 +104,20 @@ function ReviewFlashcards() {
     } catch (err) {
       console.error("Failed to save review history to server:", err);
     }
-  };  
+  }, []);
 
-  const saveReviewToHistory = (score, total, correct, date = new Date()) => {
-    const historyItem = {
-      date: date.toLocaleString(),
-      correct,
-      total,
-      score,
-      streak,
-    };
+  useEffect(() => {
+    if (currentIndex >= cards.length && !reviewEnded && cards.length > 0) {
+      const correctCount = results.filter(r => r.correct).length;
+      const total = results.length;
+      const score = Math.round((correctCount / total) * 100);
 
-    const existing = JSON.parse(localStorage.getItem('reviewHistory')) || [];
-    const updated = [historyItem, ...existing];
-    localStorage.setItem('reviewHistory', JSON.stringify(updated));
-  };
+      saveReviewToServer(score, total, correctCount);
+      setReviewEnded(true);
+    }
+  }, [currentIndex, reviewEnded, cards.length, results, saveReviewToServer]);
 
-
+  // 🔒 Protect against undefined access
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -94,6 +125,7 @@ function ReviewFlashcards() {
       </div>
     );
   }
+
   if (cards.length === 0) {
     return (
       <div className={styles.emptyMessage}>
@@ -104,45 +136,44 @@ function ReviewFlashcards() {
       </div>
     );
   }
-  if (currentIndex >= cards.length) {
+
+  if (reviewEnded) {
     const correctCount = results.filter(r => r.correct).length;
     const total = results.length;
     const score = Math.round((correctCount / total) * 100);
 
-    saveReviewToHistory(score, total, correctCount);
-    saveReviewToServer(score, total, correctCount);
-    
     return (
       <div className={styles.reviewEnd}>
         <h2>Review Complete! ✅</h2>
         <p>You answered <strong>{correctCount}</strong> out of <strong>{total}</strong> correctly.</p>
         <p>Your score: <strong>{score}%</strong></p>
-  
+
         <div className={styles.reviewActions}>
-        <button onClick={handleReviewAgain} className={styles.reviewAgain}>
-                     🔁 Review Again
-            </button>
+          <button onClick={handleReviewAgain} className={styles.reviewAgain}>🔁 Review Again</button>
           <Link to="/flashcards" className={styles.backToList}>📋 Flashcard List</Link>
           <Link to="/" className={styles.backHome}>🏠 Home</Link>
         </div>
       </div>
     );
   }
-  
 
-  const currentCard = cards[currentIndex];
+  // ✅ Only define currentCard after checks
+  const currentCard = cards[currentIndex] || null;
 
   return (
-    
     <div className={styles.reviewContainer}>
-        <div className={styles.streak}>
-      🔥 Current Streak: {streak}
-    </div>
-      <div className={styles.card} onClick={handleFlip}>
-        <p>{showAnswer ? currentCard.answer : currentCard.question}</p>
-        <span className={styles.flipHint}>(click to flip)</span>
+      <div className={styles.streak}>
+        🔥 Current Streak: {streak}
       </div>
-      {showAnswer && (
+
+      {currentCard && (
+        <div className={styles.card} onClick={handleFlip}>
+          <p>{showAnswer ? currentCard.answer : currentCard.question}</p>
+          <span className={styles.flipHint}>(click to flip)</span>
+        </div>
+      )}
+
+      {showAnswer && currentCard && (
         <div className={styles.answerButtons}>
           <button onClick={() => handleAnswer(true)} className={styles.correctBtn}>✔️ Correct</button>
           <button onClick={() => handleAnswer(false)} className={styles.incorrectBtn}>❌ Incorrect</button>

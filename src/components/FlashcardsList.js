@@ -29,7 +29,7 @@ function FlashcardsList() {
         // Make the GET request with the Authorization header.
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/flashcards/`, config);
 
-        setFlashcards(response.data);
+        setFlashcards(response.data.results);
       } catch (err) {
         console.error("Error fetching flashcards:", err);
         setError("Failed to fetch flashcards. Please try again later.");

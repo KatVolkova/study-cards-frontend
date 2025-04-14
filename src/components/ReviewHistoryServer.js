@@ -7,22 +7,29 @@ import styles from '../styles/Review.module.css';
 function ReviewHistoryServer() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPrevPage] = useState(null);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const fetchServerHistory = async (url = `${process.env.REACT_APP_API_URL}/api/review-history/`) => {
+    const token = localStorage.getItem('token');
+    try {
+      const res = await axios.get(url, {
+        headers: { Authorization: `Token ${token}` },
+      });
+      setHistory(res.data.results);
+      setNextPage(res.data.next);
+      setPrevPage(res.data.previous);
+      setTotalCount(res.data.count);
+    } catch (err) {
+      console.error("Failed to fetch review history:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   useEffect(() => {
-    const fetchServerHistory = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/review-history/`, {
-          headers: { Authorization: `Token ${token}` },
-        });
-        setHistory(res.data);
-      } catch (err) {
-        console.error("Failed to fetch review history:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchServerHistory();
   }, []);
 
@@ -50,6 +57,8 @@ function ReviewHistoryServer() {
       <div className={styles.statsBar}>
         <p>🏆 Best Score: <strong>{bestScore}%</strong></p>
         <p>🔥 Longest Streak: <strong>{longestStreak}</strong></p>
+        <p>Total review sessions: <strong>{totalCount}</strong></p>
+
       </div>
     )}
 
@@ -79,7 +88,14 @@ function ReviewHistoryServer() {
           </tbody>
         </table>
       )}
-
+      <div className={styles.paginationButtons}>
+  <button onClick={() => fetchServerHistory(prevPage)} disabled={!prevPage}>
+    ◀️ Previous
+  </button>
+  <button onClick={() => fetchServerHistory(nextPage)} disabled={!nextPage}>
+    Next ▶️
+  </button>
+</div>
       <Link to="/" className={styles.backHome}>🏠 Back to Home</Link>
     </div>
   );
