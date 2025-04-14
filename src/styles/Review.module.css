@@ -198,3 +198,12 @@
 .clearBtn:hover {
   background-color: #bb2d3b;
 }
+
+/* Statistics */
+
+.statsBar {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  color: #333;
+}

@@ -26,6 +26,10 @@ function ReviewHistoryServer() {
     fetchServerHistory();
   }, []);
 
+  const bestScore = history.reduce((max, item) => {
+    return item.score > max ? item.score : max;
+  }, 0);
+
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -37,10 +41,17 @@ function ReviewHistoryServer() {
   return (
     <div className={styles.reviewContainer}>
       <h2 className={styles.header}>📊 Your Review History (from server)</h2>
+      {history.length > 0 && (
+      <div className={styles.statsBar}>
+        <p>🏆 Best Score: <strong>{bestScore}%</strong></p>
+      </div>
+    )}
+
 
       {history.length === 0 ? (
         <p>No review sessions found.</p>
       ) : (
+
         <table className={styles.historyTable}>
           <thead>
             <tr>
