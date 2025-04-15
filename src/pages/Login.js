@@ -45,7 +45,7 @@ function Login() {
       const fetchedUsername = userResponse.data.username;
       localStorage.setItem("username", fetchedUsername);  
       setSuccessMessage("Login successful!");
-      navigate("/flashcards"); 
+      navigate("/dashboard"); 
     } catch (error) {
       console.error("Login error:", error);
       const errorMessages = [];
