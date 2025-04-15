@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/AuthForm.module.css';
 
@@ -36,14 +37,9 @@ function Login() {
       
       const {key} = response.data; 
       localStorage.setItem("token", key);
-      const userResponse = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/auth/user/`,
-        {
-          headers: {
-            Authorization: `Token ${key}`,
-          },
-        }
-      );
+      const userResponse = await api.get('/api/auth/user/', {
+        headers: { Authorization: `Token ${key}` },
+      });
 
 
       const fetchedUsername = userResponse.data.username;
