@@ -11,6 +11,7 @@ import CreateFlashcard from './components/CreateFlashcard';
 import EditFlashcard from './components/EditFlashcard';
 import ReviewFlashcards from './components/ReviewFlashcards';
 import ReviewHistoryServer from './components/ReviewHistoryServer';
+import Dashboard from './pages/Dashboard';
 
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/flashcards/:id/edit" element={<EditFlashcard />} />
         <Route path="/flashcards/review" element={<ReviewFlashcards />} />
         <Route path="/flashcards/history-server" element={<ReviewHistoryServer />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       </main>
       <Footer />

@@ -33,24 +33,35 @@ function NavigationBar() {
               <i className="fas fa-home me-1"></i> Home
             </NavLink>
             {token ? (
-              <>
-                <span className={styles.navLink} style={{ marginRight: '1rem' }}>
-                  Hi, {username}!
-                </span>
-                <button
-                  onClick={handleLogout}
-                  className={styles.navLink}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    padding: 0,
-                  }}
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
+                <>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+                    }
+                  >
+                    📋 Dashboard
+                  </NavLink>
+
+                  <span className={styles.navLink} style={{ marginRight: '1rem' }}>
+                    Hi, {username}!
+                  </span>
+
+                  <button
+                    onClick={handleLogout}
+                    className={styles.navLink}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: 0,
+                    }}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+
               <>
                 <NavLink to="/login" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}>
                   <i className="fas fa-sign-in-alt me-1"></i> Log In
