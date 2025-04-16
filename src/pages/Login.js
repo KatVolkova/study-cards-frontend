@@ -11,9 +11,11 @@ function Login() {
     username: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+  
 
   // Destructure formData for ease of use
   const {username, password } = formData;
@@ -27,6 +29,7 @@ function Login() {
     console.log("Login form submitted");
     setErrors([]);
     setSuccessMessage('');
+    setLoading(true);
 
     try {
       // Send a POST request to the login endpoint.
@@ -86,12 +89,20 @@ function Login() {
       }
 
       setErrors(errorMessages);
+    }finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.formContainer}>
       <h2 className={styles.formTitle}>Login</h2>
+
+      {loading && (
+      <div className={styles.loadingMessage}>
+       🔄 Logging you in, please wait...
+      </div>
+      )}
 
       {successMessage && (
         <div className={styles.successMessage}>{successMessage}</div>
