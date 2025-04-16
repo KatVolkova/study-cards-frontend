@@ -21,7 +21,7 @@ function ReviewFlashcards() {
   const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [reviewEnded, setReviewEnded] = useState(false);
 
-  const fetchCards = useCallback(async (url = `/api/flashcards/`) => {
+  const fetchCards = useCallback(async (url = `/api/flashcards/?limit=100`) => {
     if (isFetchingMore || reviewEnded) return;
     setIsFetchingMore(true);
 
