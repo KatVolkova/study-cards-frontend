@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../utils/api';
@@ -6,23 +5,51 @@ import styles from '../styles/Flashcards.module.css';
 
 function FlashcardsList() {
   const [flashcards, setFlashcards] = useState([]);
+  const [nextUrl, setNextUrl] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const fetchFlashcards = async (url = '/api/flashcards/?limit=5') => {
+    try {
+      const response = await api.get(url);
+      setFlashcards(prev => [...prev, ...response.data.results]);
+      setNextUrl(response.data.next);
+    } catch (err) {
+      console.error("Error fetching flashcards:", err);
+      setError("Failed to fetch flashcards. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchFlashcards = async () => {
-      try {
-        const response = await api.get('/api/flashcards/');
-        setFlashcards(response.data.results);
-      } catch (err) {
-        console.error("Error fetching flashcards:", err);
-        setError("Failed to fetch flashcards. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchFlashcards();
   }, []);
+
+  useEffect(() => {
+    if (!nextUrl) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          fetchFlashcards(nextUrl);
+        }
+      },
+      { threshold: 1 }
+    );
+
+    const sentinel = document.querySelector("#scroll-sentinel");
+    if (sentinel) {
+      observer.observe(sentinel);
+    }
+
+    return () => {
+      if (sentinel) {
+        observer.unobserve(sentinel);
+      }
+    };
+  }, [nextUrl]);
+
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this flashcard?");
     if (!confirmDelete) return;
@@ -77,6 +104,7 @@ function FlashcardsList() {
           ))}
         </ul>
       )}
+      <div id="scroll-sentinel" className={styles.sentinel}></div>
     </div>
   );
 }

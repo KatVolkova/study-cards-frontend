@@ -105,3 +105,16 @@
   .deleteButton:hover {
     text-decoration: underline;
   }
+
+  /* Infinite scroll */
+
+  .sentinel {
+    height: 1px;
+  }
+  
+  .loading {
+    text-align: center;
+    margin: 2rem 0;
+    font-style: italic;
+  }
+  
