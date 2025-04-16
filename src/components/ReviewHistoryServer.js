@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../styles/Review.module.css';
@@ -7,39 +7,52 @@ import styles from '../styles/Review.module.css';
 function ReviewHistoryServer() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [nextPage, setNextPage] = useState(null);
-  const [prevPage, setPrevPage] = useState(null);
   const [totalCount, setTotalCount] = useState(0);
 
-  const fetchServerHistory = async (url = `${process.env.REACT_APP_API_URL}/api/review-history/`) => {
+  const fetchAllReviewHistory = async () => {
     const token = localStorage.getItem('token');
+    let url = `${process.env.REACT_APP_API_URL}/api/review-history/?limit=100`;
+    let allResults = [];
+  
     try {
-      const res = await axios.get(url, {
-        headers: { Authorization: `Token ${token}` },
-      });
-      setHistory(res.data.results);
-      setNextPage(res.data.next);
-      setPrevPage(res.data.previous);
-      setTotalCount(res.data.count);
+      while (url) {
+        const res = await axios.get(url, {
+          headers: { Authorization: `Token ${token}` },
+        });
+        allResults = [...allResults, ...res.data.results];
+        url = res.data.next;
+      }
+      setHistory(allResults);
+      setTotalCount(allResults.length);
     } catch (err) {
-      console.error("Failed to fetch review history:", err);
+      console.error("Failed to fetch full review history:", err);
     } finally {
       setLoading(false);
     }
   };
   
+  const bestScore = useMemo(() => {
+    if (!history.length) return 0;
+    const scores = history.map(item => parseFloat(item.score)).filter(score => !isNaN(score));
+    return scores.length ? Math.max(...scores) : 0;
+  }, [history]);
+  
+
+  const longestStreak = useMemo(() => {
+    return history.reduce((max, item) => (item.streak > max ? item.streak : max), 0);
+  }, [history]);
+  
 
   useEffect(() => {
-    fetchServerHistory();
+    fetchAllReviewHistory();
   }, []);
 
-  const bestScore = history.reduce((max, item) => {
-    return item.score > max ? item.score : max;
-  }, 0);
+  useEffect(() => {
+    console.log("History loaded:", history);
+    console.log("Best score:", bestScore);
+    console.log("Longest streak:", longestStreak);
+  }, [history, bestScore, longestStreak]);
 
-  const longestStreak = history.reduce((max, item) => {
-    return item.streak > max ? item.streak : max;
-  }, 0);
   
 
   if (loading) {
@@ -55,7 +68,7 @@ function ReviewHistoryServer() {
       <h2 className={styles.header}>📊 Your Review History (from server)</h2>
       {history.length > 0 && (
       <div className={styles.statsBar}>
-        <p>🏆 Best Score: <strong>{bestScore}%</strong></p>
+        <p>🏆 Best Score: <strong>{Number(bestScore).toFixed(2)}%</strong></p>
         <p>🔥 Longest Streak: <strong>{longestStreak}</strong></p>
         <p>Total review sessions: <strong>{totalCount}</strong></p>
 
@@ -88,14 +101,7 @@ function ReviewHistoryServer() {
           </tbody>
         </table>
       )}
-      <div className={styles.paginationButtons}>
-  <button onClick={() => fetchServerHistory(prevPage)} disabled={!prevPage}>
-    ◀️ Previous
-  </button>
-  <button onClick={() => fetchServerHistory(nextPage)} disabled={!nextPage}>
-    Next ▶️
-  </button>
-</div>
+      
       <Link to="/" className={styles.backHome}>🏠 Back to Home</Link>
     </div>
   );
