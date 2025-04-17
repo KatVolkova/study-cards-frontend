@@ -29,12 +29,22 @@ function ReviewFlashcards() {
   );
 
 
-  const fetchCards = useCallback(async (url = `/api/flashcards/?limit=100`) => {
+  const saveReviewToServer = useCallback(async (score, total, correct, streak) => {
+    try {
+      await api.post('/api/review-history/', { score, total, correct, streak });
+    } catch (err) {
+      console.error("Failed to save review history to server:", err);
+    }
+  }, []);
+
+  const fetchCards = useCallback(async (url) => {
     if (isFetchingMore || reviewEnded) return;
     setIsFetchingMore(true);
 
     try {
-      const res = await api.get(url);
+      const today = new Date().toISOString().split('T')[0];
+      const finalUrl = url || `/api/flashcards/?next_review_date__lte=${today}&limit=100`;
+      const res = await api.get(finalUrl);
 
       setCards((prev) => {
         const existingIds = new Set(prev.map(card => card.id));
@@ -85,10 +95,32 @@ function ReviewFlashcards() {
     setShowAnswer(!showAnswer);
   };
 
-  const handleAnswer = (correct) => {
+  const handleAnswer = async (correct) => {
+    const currentCard = filteredCards[currentIndex];
+    if (!currentCard) return;
+
+    const today = new Date();
+    let nextReviewDate;
+
+    if (correct) {
+      nextReviewDate = new Date(today);
+      nextReviewDate.setDate(today.getDate() + 2); // Correct → review after 2 days
+    } else {
+      nextReviewDate = new Date(today);
+      nextReviewDate.setDate(today.getDate() + 1); // Incorrect → review tomorrow
+    }
+
+    try {
+      await api.patch(`/api/flashcards/${currentCard.id}/`, {
+        next_review_date: nextReviewDate.toISOString().split('T')[0],
+      });
+    } catch (err) {
+      console.error("Failed to update flashcard:", err);
+    }
+
     setResults((prevResults) => [
       ...prevResults,
-      { id: cards[currentIndex].id, correct },
+      { id: currentCard.id, correct },
     ]);
 
     setStreak((prevStreak) => (correct ? prevStreak + 1 : 0));
@@ -96,17 +128,8 @@ function ReviewFlashcards() {
     setCurrentIndex(currentIndex + 1);
   };
 
-  const saveReviewToServer = useCallback(async (score, total, correct, streak) => {
-    try {
-      await api.post('/api/review-history/', { score, total, correct, streak });
-    } catch (err) {
-      console.error("Failed to save review history to server:", err);
-    }
-  }, []);
-
   useEffect(() => {
-    if (currentIndex >= filteredCards.length && !reviewEnded && filteredCards.length > 0)
-      {
+    if (currentIndex >= filteredCards.length && !reviewEnded && filteredCards.length > 0) {
       const correctCount = results.filter(r => r.correct).length;
       const total = results.length;
       const score = Math.round((correctCount / total) * 100);
@@ -114,9 +137,13 @@ function ReviewFlashcards() {
       saveReviewToServer(score, total, correctCount, streak);
       setReviewEnded(true);
     }
-  }, [currentIndex, reviewEnded, filteredCards.length, results, saveReviewToServer, streak])
+  }, [currentIndex, reviewEnded, filteredCards.length, results, saveReviewToServer, streak]);
 
-  // Protect against undefined access
+  
+  
+  const currentCard = filteredCards[currentIndex] || null;
+
+  // --- Render part ---
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -125,10 +152,10 @@ function ReviewFlashcards() {
     );
   }
 
-  if (cards.length === 0) {
+  if (filteredCards.length === 0 && !loading) {
     return (
       <div className={styles.emptyMessage}>
-        <p>No flashcards to review!</p>
+        <p>No flashcards to review for now! Try clearing filters or adding new cards.</p>
         <Link to="/flashcards/create" className={styles.reviewAgain}>
           ➕ Create Your First Flashcard
         </Link>
@@ -156,55 +183,53 @@ function ReviewFlashcards() {
     );
   }
 
-  // ✅ Only define currentCard after checks
-
-  
-  const currentCard = filteredCards[currentIndex] || null;
-
   return (
     <div className={styles.reviewContainer}>
       <div className={styles.streak}>
         🔥 Current Streak: {streak}
       </div>
+
+      {/* ✏️ FILTERS ADDED */}
       <div className={styles.filters}>
-  <select
-    value={selectedTopic}
-    onChange={(e) => setSelectedTopic(e.target.value)}
-    className={styles.filterSelect}
-  >
-    <option value="">All Topics</option>
-    {[...new Set(cards.map(card => card.topic).filter(Boolean))].map((topic, idx) => (
-      <option key={idx} value={topic}>
-        {topic}
-      </option>
-    ))}
-  </select>
+        <select
+          value={selectedTopic}
+          onChange={(e) => setSelectedTopic(e.target.value)}
+          className={styles.filterSelect}
+        >
+          <option value="">All Topics</option>
+          {[...new Set(cards.map(card => card.topic).filter(Boolean))].map((topic, idx) => (
+            <option key={idx} value={topic}>
+              {topic}
+            </option>
+          ))}
+        </select>
 
-  <select
-    value={selectedStatus}
-    onChange={(e) => setSelectedStatus(e.target.value)}
-    className={styles.filterSelect}
-  >
-    <option value="">All Statuses</option>
-    <option value="new">New</option>
-    <option value="reviewing">Reviewing</option>
-    <option value="mastered">Mastered</option>
-  </select>
+        <select
+          value={selectedStatus}
+          onChange={(e) => setSelectedStatus(e.target.value)}
+          className={styles.filterSelect}
+        >
+          <option value="">All Statuses</option>
+          <option value="new">New</option>
+          <option value="reviewing">Reviewing</option>
+          <option value="mastered">Mastered</option>
+        </select>
 
-  {(selectedTopic || selectedStatus) && (
-    <button
-      type="button"
-      onClick={() => {
-        setSelectedTopic('');
-        setSelectedStatus('');
-      }}
-      className={styles.clearFiltersButton}
-    >
-      ✨ Clear Filters
-    </button>
-  )}
-</div>
+        {(selectedTopic || selectedStatus) && (
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedTopic('');
+              setSelectedStatus('');
+            }}
+            className={styles.clearFiltersButton}
+          >
+            ✨ Clear Filters
+          </button>
+        )}
+      </div>
 
+      {/* ✏️ Review Card UI */}
       {currentCard && (
         <div className={styles.card} onClick={handleFlip}>
           <p>{showAnswer ? currentCard.answer : currentCard.question}</p>

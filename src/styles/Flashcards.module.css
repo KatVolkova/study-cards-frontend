@@ -153,6 +153,13 @@
   .clearFiltersButton:hover {
     background-color: #e0e0e0;
   }
+
+  .reviewDate {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.5rem;
+  }
+  
   
   
   
