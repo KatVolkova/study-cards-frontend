@@ -39,8 +39,11 @@ function ReviewHistoryServer() {
   
 
   const longestStreak = useMemo(() => {
-    return history.reduce((max, item) => (item.streak > max ? item.streak : max), 0);
+    if (!history.length) return 0;
+    const streaks = history.map(item => parseInt(item.streak)).filter(n => !isNaN(n));
+    return streaks.length ? Math.max(...streaks) : 0;
   }, [history]);
+  
   
 
   useEffect(() => {
@@ -48,10 +51,15 @@ function ReviewHistoryServer() {
   }, []);
 
   useEffect(() => {
-    console.log("History loaded:", history);
-    console.log("Best score:", bestScore);
-    console.log("Longest streak:", longestStreak);
-  }, [history, bestScore, longestStreak]);
+    console.log("✅ Loaded review history:", history);
+    if (history.length > 0) {
+      console.log("🔍 First item:", history[0]);
+      const streaks = history.map(item => item.streak);
+      console.log("🔥 All streaks:", streaks);
+    }
+  }, [history]);
+  
+  
 
   
 
@@ -69,7 +77,7 @@ function ReviewHistoryServer() {
       {history.length > 0 && (
       <div className={styles.statsBar}>
         <p>🏆 Best Score: <strong>{Number(bestScore).toFixed(2)}%</strong></p>
-        <p>🔥 Longest Streak: <strong>{longestStreak}</strong></p>
+        <p>🔥 Longest Streak: <strong>{Number(longestStreak)}</strong></p>
         <p>Total review sessions: <strong>{totalCount}</strong></p>
 
       </div>

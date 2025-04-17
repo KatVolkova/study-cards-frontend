@@ -88,9 +88,9 @@ function ReviewFlashcards() {
     setCurrentIndex(currentIndex + 1);
   };
 
-  const saveReviewToServer = useCallback(async (score, total, correct) => {
+  const saveReviewToServer = useCallback(async (score, total, correct, streak) => {
     try {
-      await api.post('/api/review-history/', { score, total, correct });
+      await api.post('/api/review-history/', { score, total, correct, streak });
     } catch (err) {
       console.error("Failed to save review history to server:", err);
     }
@@ -102,10 +102,10 @@ function ReviewFlashcards() {
       const total = results.length;
       const score = Math.round((correctCount / total) * 100);
 
-      saveReviewToServer(score, total, correctCount);
+      saveReviewToServer(score, total, correctCount, streak);
       setReviewEnded(true);
     }
-  }, [currentIndex, reviewEnded, cards.length, results, saveReviewToServer]);
+  }, [currentIndex, reviewEnded, cards.length, results, saveReviewToServer, streak]);
 
   // 🔒 Protect against undefined access
   if (loading) {
