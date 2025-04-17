@@ -14,13 +14,7 @@
     margin-bottom: 1.5rem;
   }
   
-  .loading,
-  .error {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #666;
-  }
-  
+
   .flashcardsList {
     list-style: none;
     padding: 0;
@@ -110,11 +104,53 @@
 
   .sentinel {
     height: 1px;
+    width: 100%;
   }
   
   .loading {
     text-align: center;
     margin: 2rem 0;
+    font-size: 1.1rem;
+    color: #666;
     font-style: italic;
+  }
+  
+  .error {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  
+  /* Filters */
+
+  .filters {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .filterSelect {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+  }
+  
+  /* Clear filter button */
+
+  .clearFiltersButton {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .clearFiltersButton:hover {
+    background-color: #e0e0e0;
   }
   

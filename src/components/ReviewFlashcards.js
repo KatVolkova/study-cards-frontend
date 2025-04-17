@@ -105,9 +105,9 @@ function ReviewFlashcards() {
       saveReviewToServer(score, total, correctCount, streak);
       setReviewEnded(true);
     }
-  }, [currentIndex, reviewEnded, cards.length, results, saveReviewToServer, streak]);
+  }, [currentIndex, reviewEnded, cards.length, results, saveReviewToServer, streak])
 
-  // 🔒 Protect against undefined access
+  // Protect against undefined access
   if (loading) {
     return (
       <div className={styles.loading}>

@@ -5,15 +5,16 @@ import styles from '../styles/Flashcards.module.css';
 
 function FlashcardsList() {
   const [flashcards, setFlashcards] = useState([]);
-  const [nextUrl, setNextUrl] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
 
-  const fetchFlashcards = async (url = '/api/flashcards/?limit=5') => {
+
+  const fetchFlashcards = async () => {
     try {
-      const response = await api.get(url);
-      setFlashcards(prev => [...prev, ...response.data.results]);
-      setNextUrl(response.data.next);
+      const response = await api.get('/api/flashcards/?limit=1000');
+      setFlashcards(response.data.results); 
     } catch (err) {
       console.error("Error fetching flashcards:", err);
       setError("Failed to fetch flashcards. Please try again later.");
@@ -26,29 +27,7 @@ function FlashcardsList() {
     fetchFlashcards();
   }, []);
 
-  useEffect(() => {
-    if (!nextUrl) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting) {
-          fetchFlashcards(nextUrl);
-        }
-      },
-      { threshold: 1 }
-    );
-
-    const sentinel = document.querySelector("#scroll-sentinel");
-    if (sentinel) {
-      observer.observe(sentinel);
-    }
-
-    return () => {
-      if (sentinel) {
-        observer.unobserve(sentinel);
-      }
-    };
-  }, [nextUrl]);
+  
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this flashcard?");
@@ -78,12 +57,61 @@ function FlashcardsList() {
     + Create Flashcard
   </Link>
 </button>
+<div className={styles.filters}>
+  {/* Topic dropdown */}
+  <select
+    value={selectedTopic}
+    onChange={(e) => setSelectedTopic(e.target.value)}
+    className={styles.filterSelect}
+  >
+    <option value="">All Topics</option>
+    {[...new Set(flashcards.map(card => card.topic).filter(Boolean))].map((topic, idx) => (
+      <option key={idx} value={topic}>
+        {topic}
+      </option>
+    ))}
+  </select>
 
-      {flashcards.length === 0 ? (
-        <p>No flashcards found. Try creating one!</p>
-      ) : (
+  {/* Status dropdown */}
+  <select
+    value={selectedStatus}
+    onChange={(e) => setSelectedStatus(e.target.value)}
+    className={styles.filterSelect}
+  >
+    <option value="">All Statuses</option>
+    <option value="new">New</option>
+    <option value="reviewing">Reviewing</option>
+    <option value="mastered">Mastered</option>
+  </select>
+  {(selectedTopic || selectedStatus) && (
+  <button
+    type="button"
+    onClick={() => {
+      setSelectedTopic('');
+      setSelectedStatus('');
+    }}
+    className={styles.clearFiltersButton}
+  >
+    ✨ Clear Filters
+  </button>
+)}
+
+</div>
+
+      {flashcards
+  .filter(card => 
+    (!selectedTopic || card.topic === selectedTopic) &&
+    (!selectedStatus || card.status === selectedStatus)
+  ).length === 0 ? (
+  <p>No matching flashcards found. Try adjusting your filters!</p>
+) : (
         <ul className={styles.flashcardsList}>
-          {flashcards.map((card) => (
+          {flashcards
+            .filter(card => 
+              (!selectedTopic || card.topic === selectedTopic) &&
+              (!selectedStatus || card.status === selectedStatus)
+            )
+            .map((card) => (
             <li key={card.id} className={styles.flashcardItem}>
               <h3 className={styles.question}>{card.question}</h3>
               <p className={styles.answer}>{card.answer}</p>
@@ -104,7 +132,6 @@ function FlashcardsList() {
           ))}
         </ul>
       )}
-      <div id="scroll-sentinel" className={styles.sentinel}></div>
     </div>
   );
 }
