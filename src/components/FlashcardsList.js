@@ -11,6 +11,7 @@ function FlashcardsList() {
   const [selectedStatus, setSelectedStatus] = useState('');
 
 
+
   const fetchFlashcards = async () => {
     try {
       const response = await api.get('/api/flashcards/?limit=1000');
@@ -56,6 +57,8 @@ function FlashcardsList() {
   <Link to="/flashcards/create" style={{ textDecoration: 'none', color: 'inherit' }}>
     + Create Flashcard
   </Link>
+
+
 </button>
 <div className={styles.filters}>
   {/* Topic dropdown */}
@@ -102,6 +105,7 @@ function FlashcardsList() {
   .filter(card => 
     (!selectedTopic || card.topic === selectedTopic) &&
     (!selectedStatus || card.status === selectedStatus)
+  
   ).length === 0 ? (
   <p>No matching flashcards found. Try adjusting your filters!</p>
 ) : (

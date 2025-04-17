@@ -225,3 +225,30 @@
   50% { opacity: 1; }
   100% { opacity: 0.5; }
 }
+
+/* Filters */
+
+.filters {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+.clearFiltersButton {
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.clearFiltersButton:hover {
+  background-color: #ddd;
+}

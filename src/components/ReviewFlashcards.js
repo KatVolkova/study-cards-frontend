@@ -20,6 +20,14 @@ function ReviewFlashcards() {
   const [nextPage, setNextPage] = useState(null);
   const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [reviewEnded, setReviewEnded] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
+
+  const filteredCards = cards.filter(card => 
+    (!selectedTopic || card.topic === selectedTopic) &&
+    (!selectedStatus || card.status === selectedStatus)
+  );
+
 
   const fetchCards = useCallback(async (url = `/api/flashcards/?limit=100`) => {
     if (isFetchingMore || reviewEnded) return;
@@ -97,7 +105,8 @@ function ReviewFlashcards() {
   }, []);
 
   useEffect(() => {
-    if (currentIndex >= cards.length && !reviewEnded && cards.length > 0) {
+    if (currentIndex >= filteredCards.length && !reviewEnded && filteredCards.length > 0)
+      {
       const correctCount = results.filter(r => r.correct).length;
       const total = results.length;
       const score = Math.round((correctCount / total) * 100);
@@ -105,7 +114,7 @@ function ReviewFlashcards() {
       saveReviewToServer(score, total, correctCount, streak);
       setReviewEnded(true);
     }
-  }, [currentIndex, reviewEnded, cards.length, results, saveReviewToServer, streak])
+  }, [currentIndex, reviewEnded, filteredCards.length, results, saveReviewToServer, streak])
 
   // Protect against undefined access
   if (loading) {
@@ -148,13 +157,53 @@ function ReviewFlashcards() {
   }
 
   // ✅ Only define currentCard after checks
-  const currentCard = cards[currentIndex] || null;
+
+  
+  const currentCard = filteredCards[currentIndex] || null;
 
   return (
     <div className={styles.reviewContainer}>
       <div className={styles.streak}>
         🔥 Current Streak: {streak}
       </div>
+      <div className={styles.filters}>
+  <select
+    value={selectedTopic}
+    onChange={(e) => setSelectedTopic(e.target.value)}
+    className={styles.filterSelect}
+  >
+    <option value="">All Topics</option>
+    {[...new Set(cards.map(card => card.topic).filter(Boolean))].map((topic, idx) => (
+      <option key={idx} value={topic}>
+        {topic}
+      </option>
+    ))}
+  </select>
+
+  <select
+    value={selectedStatus}
+    onChange={(e) => setSelectedStatus(e.target.value)}
+    className={styles.filterSelect}
+  >
+    <option value="">All Statuses</option>
+    <option value="new">New</option>
+    <option value="reviewing">Reviewing</option>
+    <option value="mastered">Mastered</option>
+  </select>
+
+  {(selectedTopic || selectedStatus) && (
+    <button
+      type="button"
+      onClick={() => {
+        setSelectedTopic('');
+        setSelectedStatus('');
+      }}
+      className={styles.clearFiltersButton}
+    >
+      ✨ Clear Filters
+    </button>
+  )}
+</div>
 
       {currentCard && (
         <div className={styles.card} onClick={handleFlip}>
