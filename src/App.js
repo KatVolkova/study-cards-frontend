@@ -12,6 +12,7 @@ import EditFlashcard from './components/EditFlashcard';
 import ReviewFlashcards from './components/ReviewFlashcards';
 import ReviewHistoryServer from './components/ReviewHistoryServer';
 import Dashboard from './pages/Dashboard';
+import NotFound from './pages/NotFound';
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/flashcards/review" element={<ReviewFlashcards />} />
         <Route path="/flashcards/history-server" element={<ReviewHistoryServer />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       </main>
       <Footer />
