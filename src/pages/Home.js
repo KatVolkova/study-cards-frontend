@@ -7,14 +7,14 @@ function Home() {
 
   return (
     <div className={styles.homeContainer}>
-      <h1 className={styles.landingTitle}>Welcome to Study Cards!</h1>
+      <h1 className={styles.landingTitle}>Boost Your Memory with StudyCards</h1>
 
       {!token && (
         <section className={styles.landing}>
-          <h2 className={styles.tagline}>Boost Your Memory with StudyCards</h2>
+          {/* <h2 className={styles.tagline}>Boost Your Memory with StudyCards</h2> */}
           <p className={styles.description}>
-            StudyCards helps you master any topic using proven memory techniques like spaced repetition.
-            Create decks, review them daily, and track your learning journey.
+          StudyCards helps you learn and remember important information more easily. 
+          Organize your notes into flashcards, practice regularly, and watch your knowledge grow.
           </p>
 
           <div className={styles.authLinks}>
@@ -35,15 +35,10 @@ function Home() {
           StudyCards is a web app that helps you memorize and retain information more effectively using digital flashcards.
         </p>
 
-        <h3>🧠 Why it helps?</h3>
-        <p>
-          It uses spaced repetition – a learning technique backed by neuroscience – to help information move from short-term to long-term memory.
-        </p>
-
         <h3>⚙️ How It Works</h3>
         <ol className={styles.stepsList}>
           <li> Create flashcards</li>
-          <li> Review with smart tracking</li>
+          <li> Review and track your progress</li>
           <li> Master topics over time</li>
         </ol>
       </section>
