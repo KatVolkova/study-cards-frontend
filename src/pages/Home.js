@@ -11,7 +11,6 @@ function Home() {
 
       {!token && (
         <section className={styles.landing}>
-          {/* <h2 className={styles.tagline}>Boost Your Memory with StudyCards</h2> */}
           <p className={styles.description}>
           StudyCards helps you learn and remember important information more easily. 
           Organize your notes into flashcards, practice regularly, and watch your knowledge grow.

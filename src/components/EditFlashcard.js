@@ -37,15 +37,30 @@ function EditFlashcard() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrors([]);
+  
     try {
       await api.put(`/api/flashcards/${id}/`, formData);
       navigate('/flashcards');
     } catch (err) {
       console.error('Error updating flashcard:', err);
-      setErrors(['Failed to update flashcard.']);
+      const messages = [];
+      if (err.response?.data) {
+        for (let key in err.response.data) {
+          const val = err.response.data[key];
+          if (Array.isArray(val)) {
+            val.forEach((msg) => messages.push(`${key}: ${msg}`));
+          } else {
+            messages.push(`${key}: ${val}`);
+          }
+        }
+      } else {
+        messages.push('Something went wrong. Please try again.');
+      }
+      setErrors(messages);
     }
   };
+  
 
   return (
     <div className={styles.formContainer}>

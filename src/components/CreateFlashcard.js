@@ -104,7 +104,7 @@ function CreateFlashcard() {
             <option value="mastered">Mastered</option>
           </select>
         </div>
-        <button type="submit" className={styles.formButton}>
+        <button type="submit" className={styles.formButton} aria-label="Save Flashcard">
           Save Flashcard
         </button>
       </form>
