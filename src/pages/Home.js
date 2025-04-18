@@ -41,11 +41,11 @@ function Home() {
         </p>
 
         <h3>⚙️ How It Works</h3>
-        <ul className={styles.stepsList}>
-          <li>✏️ Create flashcards</li>
-          <li>🔁 Review with smart tracking</li>
-          <li>🏆 Master topics over time</li>
-        </ul>
+        <ol className={styles.stepsList}>
+          <li> Create flashcards</li>
+          <li> Review with smart tracking</li>
+          <li> Master topics over time</li>
+        </ol>
       </section>
     </div>
   );

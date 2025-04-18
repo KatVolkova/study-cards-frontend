@@ -40,7 +40,7 @@ function NavigationBar() {
                       isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
                     }
                   >
-                    📋 Dashboard
+                    <i className="fas fa-chart-line me-1"></i> Dashboard
                   </NavLink>
 
                   <span className={styles.navLink} style={{ marginRight: '1rem' }}>
@@ -57,7 +57,7 @@ function NavigationBar() {
                       padding: 0,
                     }}
                   >
-                    Logout
+                    <i className="fas fa-sign-out-alt me-1"></i>Logout
                   </button>
                 </>
               ) : (

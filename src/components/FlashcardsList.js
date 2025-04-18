@@ -95,7 +95,7 @@ function FlashcardsList() {
     }}
     className={styles.clearFiltersButton}
   >
-    ✨ Clear Filters
+    <i className="fas fa-eraser me-2"></i> Clear Filters
   </button>
 )}
 

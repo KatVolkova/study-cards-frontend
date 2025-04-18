@@ -8,19 +8,19 @@ function Dashboard() {
       <h1 className={styles.landingTitle}>Your StudyCards Dashboard</h1>
       <div className={styles.dashboardButtons}>
       <Link to="/flashcards/create" className={styles.createBtn}>
-        + Create Flashcard
+      <i className="fas fa-plus me-2"></i> Create Flashcard
       </Link>
       <Link to="/flashcards/" className={styles.listBtn}>
-      📂 View All Flashcards
+      <i className="fas fa-folder-open me-2"></i> View All Flashcards
       </Link>
 
 
       <Link to="/flashcards/review" className={styles.reviewButton}>
-        🔁 Review Flashcards
+      <i className="fas fa-sync-alt me-2"></i> Review Flashcards
       </Link>
 
       <Link to="/flashcards/history-server" className={styles.historyBtn}>
-        📡 View Server History
+      <i className="fas fa-history me-2"></i> View Server History
       </Link>
       </div>
     </div>
