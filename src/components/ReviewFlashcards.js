@@ -17,9 +17,8 @@ function ReviewFlashcards() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
   const [streak, setStreak] = useState(0);
-  const [nextPage, setNextPage] = useState(null);
-  const [isFetchingMore, setIsFetchingMore] = useState(false);
   const [reviewEnded, setReviewEnded] = useState(false);
+
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
 
@@ -28,58 +27,22 @@ function ReviewFlashcards() {
     (!selectedStatus || card.status === selectedStatus)
   );
 
-
-  const saveReviewToServer = useCallback(async (score, total, correct, streak) => {
+  const fetchCards = useCallback(async () => {
+    setLoading(true);
     try {
-      await api.post('/api/review-history/', { score, total, correct, streak });
-    } catch (err) {
-      console.error("Failed to save review history to server:", err);
-    }
-  }, []);
+      const res = await api.get(`/api/flashcards/?limit=100`);
 
-  const fetchCards = useCallback(async (url) => {
-    if (isFetchingMore || reviewEnded) return;
-    setIsFetchingMore(true);
-
-    try {
-      const today = new Date().toISOString().split('T')[0];
-      const finalUrl = url || `/api/flashcards/?next_review_date__lte=${today}&limit=100`;
-      const res = await api.get(finalUrl);
-
-      setCards((prev) => {
-        const existingIds = new Set(prev.map(card => card.id));
-        const newCards = shuffleArray(res.data.results).filter(card => !existingIds.has(card.id));
-        return [...prev, ...newCards];
-      });
-
-      setNextPage(res.data.next);
+      setCards(shuffleArray(res.data.results));
       setLoading(false);
     } catch (err) {
       console.error("Failed to load flashcards:", err);
       setLoading(false);
-    } finally {
-      setIsFetchingMore(false);
     }
-  }, [isFetchingMore, reviewEnded]);
+  }, []);
 
   useEffect(() => {
     fetchCards();
   }, [fetchCards]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-          document.documentElement.offsetHeight - 100 &&
-        nextPage
-      ) {
-        fetchCards(nextPage);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [nextPage, fetchCards]);
 
   const handleReviewAgain = () => {
     setCards([]);
@@ -95,28 +58,9 @@ function ReviewFlashcards() {
     setShowAnswer(!showAnswer);
   };
 
-  const handleAnswer = async (correct) => {
+  const handleAnswer = (correct) => {
     const currentCard = filteredCards[currentIndex];
     if (!currentCard) return;
-
-    const today = new Date();
-    let nextReviewDate;
-
-    if (correct) {
-      nextReviewDate = new Date(today);
-      nextReviewDate.setDate(today.getDate() + 2); // Correct → review after 2 days
-    } else {
-      nextReviewDate = new Date(today);
-      nextReviewDate.setDate(today.getDate() + 1); // Incorrect → review tomorrow
-    }
-
-    try {
-      await api.patch(`/api/flashcards/${currentCard.id}/`, {
-        next_review_date: nextReviewDate.toISOString().split('T')[0],
-      });
-    } catch (err) {
-      console.error("Failed to update flashcard:", err);
-    }
 
     setResults((prevResults) => [
       ...prevResults,
@@ -130,20 +74,13 @@ function ReviewFlashcards() {
 
   useEffect(() => {
     if (currentIndex >= filteredCards.length && !reviewEnded && filteredCards.length > 0) {
-      const correctCount = results.filter(r => r.correct).length;
-      const total = results.length;
-      const score = Math.round((correctCount / total) * 100);
-
-      saveReviewToServer(score, total, correctCount, streak);
       setReviewEnded(true);
     }
-  }, [currentIndex, reviewEnded, filteredCards.length, results, saveReviewToServer, streak]);
+  }, [currentIndex, reviewEnded, filteredCards.length]);
 
-  
-  
   const currentCard = filteredCards[currentIndex] || null;
 
-  // --- Render part ---
+  // --- Render ---
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -189,7 +126,7 @@ function ReviewFlashcards() {
         🔥 Current Streak: {streak}
       </div>
 
-      {/* ✏️ FILTERS ADDED */}
+      {/* Filters */}
       <div className={styles.filters}>
         <select
           value={selectedTopic}
@@ -229,7 +166,7 @@ function ReviewFlashcards() {
         )}
       </div>
 
-      {/* ✏️ Review Card UI */}
+      {/* Flashcard */}
       {currentCard && (
         <div className={styles.card} onClick={handleFlip}>
           <p>{showAnswer ? currentCard.answer : currentCard.question}</p>

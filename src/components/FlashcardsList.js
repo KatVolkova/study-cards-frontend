@@ -121,11 +121,6 @@ function FlashcardsList() {
               <p className={styles.answer}>{card.answer}</p>
               {card.topic && <span className={styles.topic}>Topic: {card.topic}</span>}
               <span className={styles.status}>Status: {card.status}</span>
-              {card.next_review_date && (
-      <p className={styles.reviewDate}>
-       📅 Next Review: {new Date(card.next_review_date).toLocaleDateString()}
-      </p>
-     )}
               <div className={styles.cardActions}>
       <Link to={`/flashcards/${card.id}/edit`} className={styles.editButton}>
         ✏️ Edit
