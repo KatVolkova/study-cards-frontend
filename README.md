@@ -570,8 +570,20 @@ Here are some planned enhancements to further improve the StudyCards platform:
 ### Wireframes
 
 ### Colour Scheme
-The following colour palette has been used:
-- **#F4F7FC**: background color for the body, providing a light and clean look.
+
+The following colour palette has been used throughout the StudyCards website:
+
+- **#F4F7FC**: Background color for the body, providing a light and clean look.
+- **#FFFFFF**: Background for cards, forms, and containers to maintain clarity and focus.
+- **#FFC107**: Primary button color (e.g., "Save Flashcard", "Submit"), offering a vibrant and inviting accent.
+- **#E0A800**: Button hover effect, providing a smooth, interactive transition.
+- **#333333**: Primary text color for strong readability against light backgrounds.
+- **#666666**: Secondary text color used for less important information, ensuring visual hierarchy.
+- **#FF4C4C**: Error and alert messages (e.g., failed login, form validation errors) to grab attention.
+- **#28A745**: Success messages and indicators (e.g., successful login or registration).
+- **#17A2B8**: Highlight elements such as info banners or links for a friendly and modern feel.
+
+The combination of soft backgrounds, strong contrast for text, and vibrant accent colors ensures the platform remains accessible, clean, and visually appealing across devices.
 
 
 Screenshots below show an example of the colour palette:
