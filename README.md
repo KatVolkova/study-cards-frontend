@@ -7,17 +7,66 @@ Visit the deployed site: [Study Cards App]()
 
 ## Overview
 
+**StudyCards** is a web-based application designed to help users study and retain information more efficiently using digital flashcards.  
+It offers a simple, intuitive, and responsive interface where users can create, organize, review, and track their learning progress.
+
+The platform is suitable for students, lifelong learners, and anyone aiming to improve their knowledge retention.  
+StudyCards focuses on delivering a distraction-free and user-friendly study experience while setting a foundation for more advanced features like spaced repetition and learning analytics.
+
+Key highlights include:
+- Secure user registration and login system
+- Personalized dashboard for quick access to learning tools
+- Ability to create, edit, delete, and filter flashcards
+- Review mode with instant feedback and progress tracking
+- Full responsiveness across mobile, tablet, and desktop devices
+- Clean, modern design with accessibility considerations
+
+StudyCards is built using a **React.js** front-end and a **Django REST Framework** back-end, ensuring a scalable and maintainable codebase ready for future enhancements.
+
+---
+
+
 ## Index
 
 
 ## Project Description
 
-### Main goals
+**StudyCards** is a full-stack web application that empowers users to create, manage, and review flashcards to boost memory retention and learning efficiency.  
+The app offers a simple yet powerful study system, helping users structure their knowledge in small, manageable pieces. 
+
+Built with **React** (front-end) and **Django REST Framework** (back-end), StudyCards provides:
+- A clean and responsive user interface
+- Authentication with secure login and registration
+- Tools to create, edit, filter, and delete flashcards
+- A dynamic review system to track progress
+- Mobile-friendly design for learning anytime, anywhere
+
+The project is designed with scalability and future enhancements in mind, making it a strong foundation for incorporating features like spaced repetition algorithms and advanced analytics.
+
+---
 
 
-### User goals
+## Main Goals
 
-### Site owner goals
+- Provide a simple and intuitive platform for users to create, review, and manage flashcards.
+- Support users in developing strong, long-term memory retention through regular practice.
+- Ensure the application is responsive and accessible across devices (desktop, tablet, mobile).
+- Build a scalable foundation for implementing advanced learning techniques in future updates.
+
+## User Goals
+
+- Easily register, log in, and manage a personalized collection of flashcards.
+- Quickly create new flashcards categorized by topic and learning status.
+- Review flashcards effectively through a user-friendly interface with progress tracking.
+- Access the platform from any device to study on the go.
+
+## Site Owner Goals
+
+- Provide a reliable, secure, and professional service that encourages repeat use.
+- Collect feedback for future improvements like spaced repetition algorithms or deck management.
+- Grow the user base by offering a high-quality, mobile-friendly study tool.
+- Maintain a clean and maintainable codebase to support long-term feature development and scaling.
+
 
 
 ### Features
@@ -539,7 +588,6 @@ The website uses the following font styles for its design:
 ![Rubik Google Fonts]()
 - **Fira Code**: Chosen for code blocks to enhance readability and clarity
 ![Fira COde Google Fonts]()
-
 The screenshot below is an example of the above styles combination:
 ![Typography example]()
 
