@@ -267,9 +267,14 @@ Each page has been reviewed using [Google Lighthouse](https://developer.chrome.c
 
 ### Solved Bugs
 
-| **Bug Number** | **Description**  | **Cause** |**Solution** |                                                                                                                                                    |
-|----------------|------------------|------------|------------|
-|                  |                |           |             |
+| **Bug Number** | **Description**                                          | **Cause**                                                | **Solution**                                             |
+|----------------|-----------------------------------------------------------|----------------------------------------------------------|----------------------------------------------------------|
+| 1              | Flashcards list not updating after deleting a flashcard    | Flashcard was deleted on backend but not removed from frontend state | Updated local state after successful deletion to immediately reflect UI changes |
+| 2              | Navigation bar did not update after login/logout           | Token and username changes were not triggering rerender  | Used `localStorage` correctly and adjusted component to rerender on auth state changes |
+| 3              | Form error messages were not displayed on failed submissions | Form was catching errors but not rendering them properly | Added logic to map backend errors into a list and render dynamically in the UI |
+| 4              | Flashcards text overflowed on small devices                | No responsive styling was applied to flashcard elements  | Added media queries to adjust font size, padding, and layout on smaller screens |
+| 5              | Review flashcards component crashed if no cards were available | No check if array was empty before accessing card properties | Added conditional rendering and fallback messages when no flashcards were available |
+
 ### Unresolved bugs
 
 | **Bug** | **Description**|
