@@ -109,6 +109,7 @@
   }
   
   .loading {
+    min-height: 200px;
     text-align: center;
     margin: 2rem 0;
     font-size: 1.1rem;

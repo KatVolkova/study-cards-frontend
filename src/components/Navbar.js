@@ -23,7 +23,7 @@ function NavigationBar() {
     <Navbar expand="md" bg="light" variant="light" fixed="top" className="shadow-sm">
       <Container fluid>
         <Navbar.Brand as={NavLink} to="/" >
-          <img src={logo} alt="StudyCards Logo" height="30" className="me-2" />
+          <img src={logo} alt="StudyCards Logo" height="30"  width="30" className="me-2" />
           <strong className="fs-4">StudyCards</strong>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
