@@ -491,7 +491,29 @@ The Not Found Page provides a user-friendly message when a user tries to access 
 - 🎨 Visually clean and non-intimidating error page.
 
 
-#### Future Implementations
+## Future Implementations
+
+Here are some planned enhancements to further improve the StudyCards platform:
+
+1. **Spaced Repetition Algorithm**  
+   Implement an intelligent review system that schedules flashcard reviews based on the user's performance and memory retention, following scientifically proven spaced repetition techniques.
+
+2. **Deck Organization**  
+   Allow users to group flashcards into customizable **Decks** based on topics, courses, or personal study plans for better organization and easier navigation.
+
+3. **Flashcard Tags and Search**  
+   Introduce tagging functionality and an advanced search bar so users can quickly find specific flashcards based on keywords, topics, or difficulty levels.
+
+4. **Progress Tracking Dashboard**  
+   Expand the Dashboard with visual analytics (e.g., charts and graphs) to display user progress, improvement trends, mastery rates per deck, and areas needing more practice.
+
+5. **Dark Mode and Theme Customization**  
+   Provide users with a **Dark Mode** option and multiple color themes to enhance usability, accessibility, and personal comfort during long study sessions.
+
+---
+
+✨ These features are intended to make StudyCards more intelligent, organized, user-friendly, and visually appealing for all learners!
+
 
 
 ## Design
