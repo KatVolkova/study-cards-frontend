@@ -21,6 +21,7 @@
   }
   
   .flashcardItem {
+    min-height: 200px;
     margin-bottom: 1.5rem;
     padding: 1rem;
     border: 1px solid #ddd;
@@ -176,6 +177,10 @@
   
     .editButton, .deleteButton {
       font-size: 0.85rem;
+    }
+
+    .flashcardItem {
+      min-height: 150px;
     }
   }
   

@@ -14,7 +14,7 @@ function FlashcardsList() {
 
   const fetchFlashcards = async () => {
     try {
-      const response = await api.get('/api/flashcards/?limit=1000');
+      const response = await api.get('/api/flashcards/?limit=50');
       setFlashcards(response.data.results); 
     } catch (err) {
       console.error("Error fetching flashcards:", err);
