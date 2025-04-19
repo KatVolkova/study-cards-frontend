@@ -161,5 +161,22 @@
   }
   
   
+  @media (max-width: 480px) {
+    .question {
+      font-size: 1rem;
+    }
+  
+    .answer {
+      font-size: 0.95rem;
+    }
+  
+    .status, .topic {
+      font-size: 0.85rem;
+    }
+  
+    .editButton, .deleteButton {
+      font-size: 0.85rem;
+    }
+  }
   
   

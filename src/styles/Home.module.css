@@ -158,3 +158,9 @@
     text-align: center;
   }
   
+  @media (max-width: 768px) {
+    .dashboardButtons a:last-child {
+      margin-bottom: 2rem;
+    }
+  }
+  
