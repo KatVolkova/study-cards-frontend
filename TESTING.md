@@ -6,9 +6,22 @@ Return to the [project name README.md](README.md).
 
 ## User Story Validation
 
-| **User Story**     |**What to Expect**  | **Result** |
-|--------------------|------------------| -----------|
-|                    |                   |           |
+| **User Story**     | **What to Expect** | **Result** |
+|--------------------|--------------------|------------|
+| Navigation         | Navbar visible on all pages with correct links based on login state | ✅ Implemented and working |
+| Routing            | Clicking links updates route without full page reload | ✅ Implemented and working |
+| Sign Up            | User can register with username, email, and password, redirected to dashboard on success | ✅ Implemented and working |
+| Sign In            | User can log in and is redirected to dashboard; token is saved | ✅ Implemented and working |
+| Logged-In Status   | Navbar updates to show username and logout when logged in | ✅ Implemented and working |
+| Token Refreshing   | User stays logged in until they manually log out | ✅ Implemented and working |
+| Conditional Navbar Rendering | Navbar shows correct options depending on authentication state | ✅ Implemented and working |
+| Create Flashcards  | Users can submit a new flashcard with a question, answer, and topic | ✅ Implemented and working |
+| Edit Flashcards    | Users can update existing flashcards and changes are saved | ✅ Implemented and working |
+| Delete Flashcards  | Users can delete flashcards with confirmation | ✅ Implemented and working |
+| Review Flashcards  | Users can review flashcards by flipping and marking correct/incorrect | ✅ Implemented and working |
+| Track Progress     | Users can view and update flashcard status as new, reviewing, or mastered | ✅ Implemented and working |
+| Filter Flashcards  | Users can filter flashcards by topic or status to focus studies | ✅ Implemented and working |
+
 
 ## Features Testing
 
