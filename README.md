@@ -54,6 +54,32 @@ Styling & Behavior:
 - Includes hover transitions for better interactivity.
 - Fully responsive — adapts to mobile and desktop viewports.
 
+## 📍 Navbar
+
+The **navigation bar** provides quick access to the main sections of the StudyCards app and dynamically updates based on the user's authentication status.
+
+### ✨ Features:
+
+- **Logo**:
+  - Displays the StudyCards logo on the left side.
+  - Clicking the logo redirects the user back to the **Home** page.
+
+- **When logged out**:
+  - Navigation links available: **Home**, **Log In**, and **Register**.
+
+- **When logged in**:
+  - Navigation links available: **Home** and **Dashboard**.
+  - A personalized **greeting** appears (e.g., "Hi, username!").
+  - A **Log Out** button is displayed to end the session.
+
+- **Responsive design**:
+  - On smaller screens (mobile and tablets), the Navbar **collapses** into a hamburger menu for better accessibility.
+  - The menu can be expanded/collapsed to navigate between sections easily.
+
+### 🛠️ Technologies:
+- Built using **React Bootstrap Navbar** for responsive behavior.
+- **Font Awesome** icons are used next to navigation links to enhance visual clarity.
+
 
 #### Footer
 
@@ -66,6 +92,403 @@ The footer is pinned to the bottom of the page,  it displays:
 
 This design ensures that users can always access key information about our application and follow us on social platforms, regardless of where they are on the page.
 
+## Home Page
+
+The Home Page serves as the welcoming entry point for both new and returning users.
+
+### Key Features:
+- **Dynamic Content Based on Authentication**:
+  - If the user is **not logged in**, the page displays:
+    - A brief description of StudyCards benefits.
+    - A call-to-action button to **Register**.
+    - A secondary link for existing users to **Log In**.
+  - If the user is **logged in**, the authentication section is hidden, keeping the layout clean.
+
+- **About Section**:
+  - Clear explanation of what StudyCards is and how it helps users to improve their memory and study routines.
+
+- **Steps Section**:
+  - An ordered list outlining the simple process:
+    1. Create flashcards.
+    2. Review and track your progress.
+    3. Master topics over time.
+
+- **Mobile-Friendly and Responsive**:
+  - Designed to adapt smoothly to various screen sizes, from desktop monitors to mobile devices.
+
+- **Accessible and SEO-Ready**:
+  - Semantic headings (`<h1>`, `<h3>`) are used to structure the content for better readability and SEO performance.
+
+### Visual Elements:
+- 🚀 Icon on the **Get Started** button for visual engagement.
+- Clear, friendly language that encourages users to take the next step.
+
+## Register Page
+
+The Register Page allows new users to easily create a StudyCards account.
+
+### Key Features:
+- **User Registration**:
+  - A form with fields for:
+    - **Username**
+    - **Email**
+    - **Password**
+    - **Password Confirmation**
+  - All fields are validated to ensure they meet the requirements before submission.
+
+- **Password Requirements**:
+  - Password must:
+    - Be at least 8 characters long.
+    - Include uppercase and lowercase letters.
+    - Include at least one number.
+    - Allow special characters.
+  - A helpful password guideline is displayed below the form.
+
+- **Feedback to Users**:
+  - Displays success message upon successful registration.
+  - Shows detailed error messages if the registration fails (e.g., password too short, passwords do not match, username already taken).
+
+- **Post-Registration Actions**:
+  - After successful registration:
+    - The user is redirected to the **Home** page.
+    - Encouraged to log in.
+
+- **Error Handling**:
+  - Comprehensive error messages covering:
+    - Validation issues.
+    - Network issues.
+    - Server-side errors.
+
+- **Mobile-Friendly and Responsive**:
+  - Fully optimized layout for mobile, tablet, and desktop screens.
+
+### Visual Elements:
+- ✅ **Success message** after registration.
+- ❗ **Error messages** displayed in a user-friendly manner.
+
+
+
+## Login Page
+
+The Login Page allows returning users to securely access their StudyCards account.
+
+### Key Features:
+- **User Authentication**:
+  - A clean form with fields for **Username** and **Password**.
+  - Validation to ensure required fields are filled before submission.
+  - Displays meaningful error messages if login fails (e.g., invalid credentials, server issues).
+
+- **Feedback to Users**:
+  - Shows a loading indicator ("Logging you in, please wait...") during the authentication process.
+  - Displays a success message upon successful login.
+
+- **Security**:
+  - Secure login request using **Token Authentication** (token is stored in `localStorage` upon success).
+
+- **Post-Login Actions**:
+  - After successful login:
+    - Stores the **token** and **username** locally.
+    - Redirects the user automatically to the **Dashboard**.
+
+- **Error Handling**:
+  - Comprehensive error catching and display:
+    - Validation errors (e.g., missing fields).
+    - Authentication errors (wrong username or password).
+    - Server errors or network failures.
+
+- **Mobile-Friendly and Responsive**:
+  - Optimized for all screen sizes for smooth login on mobile devices as well.
+
+### Visual Elements:
+- 🔄 **Loading spinner** text when logging in.
+- ❗ **Error messages** clearly displayed if login fails.
+
+
+
+## Dashboard Page
+
+The Dashboard Page acts as the central hub for logged-in users, giving quick access to key StudyCards features.
+
+### Key Features:
+- **User Access**:
+  - Only available to authenticated (logged-in) users.
+
+- **Navigation Buttons**:
+  - **Create Flashcard**: Direct link to add a new flashcard.
+  - **View All Flashcards**: View and manage all created flashcards.
+  - **Review Flashcards**: Start a flashcard review session.
+  - **View Server History**: View past review session statistics stored on the server.
+
+- **Design & Layout**:
+  - Clean and user-friendly button layout.
+  - Buttons use Font Awesome icons for better visual clarity:
+    - ➕ **Create Flashcard**
+    - 📂 **View All Flashcards**
+    - 🔁 **Review Flashcards**
+    - 📡 **View Server History**
+  - Buttons are styled consistently for a seamless experience.
+
+- **Responsiveness**:
+  - The dashboard adapts well to different screen sizes (desktop, tablet, mobile).
+  - Buttons remain touch-friendly and easy to click on smaller screens.
+
+- **User Experience**:
+  - Immediate redirection to selected actions without reloading the page.
+  - Clear labeling and intuitive navigation for quick access.
+
+### Visual Elements:
+- 📋 Centralized button panel.
+- 🎯 Quick access to all study activities.
+- 🖼️ Minimalist and responsive design.
+
+## Create Flashcard Page
+
+The Create Flashcard Page allows users to easily add new flashcards to their collection for future review.
+
+### Key Features:
+- **Form Fields**:
+  - **Question**: Text input for the flashcard's question (required).
+  - **Answer**: Text input for the flashcard's answer (required).
+  - **Topic**: Optional text input to categorize the flashcard.
+  - **Status**: Dropdown menu with three options:
+    - `New`
+    - `Reviewing`
+    - `Mastered`
+  - **Default Status**: New flashcards are assigned a "New" status unless changed manually.
+
+- **Form Handling**:
+  - Validation for required fields (question and answer must not be empty).
+  - Error messages displayed clearly if submission fails (e.g., missing fields or server issues).
+  - Displays a success message and redirects the user back to the Flashcards List upon successful creation.
+
+- **API Integration**:
+  - Submits flashcard data securely to the backend via `POST` request.
+
+- **Design & Layout**:
+  - Clean, minimalistic form layout.
+  - Input fields and buttons are styled consistently.
+  - Submit button is designed to be large and easy to interact with, especially on mobile.
+
+- **Responsiveness**:
+  - Fully responsive for mobile, tablet, and desktop views.
+  - Maintains user-friendly touch targets for smaller screens.
+
+- **Accessibility**:
+  - Form inputs include clear placeholders for better guidance.
+  - Button has an `aria-label` for improved screen reader support.
+
+### Visual Elements:
+- ✏️ Simple and intuitive form structure.
+- 📂 Organized inputs for managing flashcard data.
+- 🚀 Smooth redirection and feedback after flashcard creation.
+
+## Edit Flashcard Page
+
+The Edit Flashcard Page allows users to update an existing flashcard's details, helping them keep their study materials accurate and up-to-date.
+
+### Key Features:
+- **Prefilled Form Fields**:
+  - When the page loads, it fetches the current flashcard data (question, answer, topic, status) and pre-fills the form fields.
+  
+- **Editable Fields**:
+  - **Question**: Text input field for modifying the flashcard question.
+  - **Answer**: Text input field for modifying the flashcard answer.
+  - **Topic**: Optional text input for updating the topic category.
+  - **Status**: Dropdown menu to update the flashcard’s learning status:
+    - `New`
+    - `Reviewing`
+    - `Mastered`
+
+- **Form Handling**:
+  - User can modify one or multiple fields.
+  - Form validation ensures required fields (question and answer) are not left blank.
+  - Displays meaningful error messages if the update fails.
+  - Redirects user to the Flashcards List after successful update.
+
+- **API Integration**:
+  - Sends updated flashcard data via `PUT` request to the backend.
+
+- **Design & Layout**:
+  - Consistent and user-friendly layout shared with the Create Flashcard page.
+  - Error and success feedback provided directly on the page.
+
+- **Responsiveness**:
+  - Fully optimized for mobile, tablet, and desktop screens.
+  - Form elements remain accessible and usable on all device sizes.
+
+- **Accessibility**:
+  - Clear placeholder texts for better usability.
+  - Well-structured form for screen readers and keyboard navigation.
+
+### Visual Elements:
+- ✏️ Editable input fields.
+- 📋 Dropdown to easily adjust the flashcard’s review status.
+- ✅ Clean confirmation flow after updating flashcards.
+
+## Flashcards List Page
+
+The Flashcards List Page provides users with an organized overview of all their created flashcards. Users can easily view, filter, edit, and delete their flashcards from this page.
+
+### Key Features:
+- **Flashcard Overview**:
+  - Displays each flashcard with its **Question**, **Answer**, **Topic**, and **Status**.
+
+- **Filtering Options**:
+  - **Filter by Topic**: Dropdown menu allows users to view flashcards related to a specific topic.
+  - **Filter by Status**: Dropdown to filter flashcards by their learning status:
+    - `New`
+    - `Reviewing`
+    - `Mastered`
+  - **Clear Filters**: Button to reset all applied filters and show all flashcards.
+
+- **CRUD Actions**:
+  - **Edit**: Button for each flashcard redirects users to an edit form where they can update flashcard details.
+  - **Delete**: Button prompts for confirmation before permanently deleting a flashcard from the system.
+
+- **Create New Flashcard**:
+  - A dedicated button at the top to navigate users directly to the Create Flashcard page.
+
+- **Empty State Handling**:
+  - Displays a helpful message if no flashcards match the selected filters.
+  - Encourages users to add new flashcards if none exist.
+
+- **Design & Layout**:
+  - Clean and simple list-style layout with distinct cards for each flashcard.
+  - Visual separation between flashcards for better readability.
+
+- **Responsiveness**:
+  - Optimized for various screen sizes — mobile, tablet, and desktop views.
+  - Font sizes and spacing adjust appropriately for smaller screens.
+
+- **Accessibility**:
+  - Interactive elements like edit and delete buttons are easily navigable via keyboard.
+  - Semantic HTML elements used for better screen reader support.
+
+### Visual Elements:
+- 📚 Flashcards displayed in an organized list.
+- ✏️ Edit and 🗑️ Delete icons for quick management.
+- 🎯 Clear Filters button to refresh the view easily.
+- ➕ Create Flashcard button to encourage adding more content.
+
+
+## Review Flashcards Page
+
+The Review Flashcards Page enables users to practice their flashcards interactively, strengthening memory retention and tracking their progress over time.
+
+### Key Features:
+- **Smart Review Flow**:
+  - Flashcards are displayed one at a time, allowing the user to focus on each card individually.
+  - Clicking on a card flips it to reveal the answer.
+  - After viewing the answer, users can mark their response as **Correct** or **Incorrect**.
+
+- **Streak Tracking**:
+  - A dynamic "Current Streak" counter shows how many correct answers the user has given in a row.
+  - Encourages consistent learning habits through positive reinforcement.
+
+- **Session Completion Summary**:
+  - After finishing the review session, a summary is displayed:
+    - Total correct answers
+    - Total flashcards reviewed
+    - Final score as a percentage
+  - Options to:
+    - 🔁 Review Again
+    - 📋 Return to Flashcards List
+    - 🏠 Return to Home Page
+
+- **Filtering Options**:
+  - Users can filter flashcards before starting a review:
+    - **By Topic**: Focus on a specific subject.
+    - **By Status**: Focus on flashcards based on their learning progress (`New`, `Reviewing`, `Mastered`).
+  - **Clear Filters** button available to reset selections.
+
+- **Shuffle Logic**:
+  - Flashcards are randomized to ensure varied practice and prevent memorizing card order.
+
+- **Responsive Design**:
+  - Mobile-friendly design with accessible buttons and readable font sizes.
+  - Flip animations and buttons scale nicely across devices.
+
+- **Accessibility**:
+  - Keyboard navigable buttons.
+  - Clear focus states for interactive elements.
+
+### Visual Elements:
+- 🔥 Streak Counter displayed prominently.
+- ✔️ and ❌ Buttons for easy marking.
+- 📈 Score summary after completing a session.
+- 🎯 Clear filters and shuffle logic to keep sessions effective and fresh.
+
+## Review History Page
+
+The Review History Page allows users to track their past study sessions and measure their learning progress over time.
+
+### Key Features:
+- **Session Records**:
+  - Displays a table of all review sessions saved on the server.
+  - Each entry includes:
+    - **Date** and Time of the review
+    - **Score** (%) achieved
+    - **Correct** answers
+    - **Total** questions answered
+
+- **Statistics Summary**:
+  - At the top of the page, key statistics are highlighted:
+    - 🏆 **Best Score**: The highest score the user has ever achieved.
+    - 🔥 **Longest Streak**: The best consecutive correct answer streak.
+    - 📈 **Total Sessions**: Total number of completed review sessions.
+
+- **Pagination Handling**:
+  - Handles large datasets by fetching and combining paginated API results automatically behind the scenes.
+
+- **Responsive Table Design**:
+  - The review history table adapts to different screen sizes.
+  - Scrollable on mobile devices for easier navigation without breaking the layout.
+
+- **Loading State**:
+  - Displays a friendly loading indicator while the data is being fetched from the server.
+
+- **Navigation**:
+  - After reviewing history, users can easily return:
+    - 🏠 **Back to Home** button available.
+
+- **Accessibility**:
+  - Table elements are structured semantically for better screen reader support.
+  - Clear and consistent link styling for improved focus visibility.
+
+### Visual Elements:
+- 📊 Clean and readable table format for easy analysis.
+- 🎯 Highlighted stats bar for quick insights.
+- 🔄 Smooth transitions when loading new data.
+
+## Not Found (404) Page
+
+The Not Found Page provides a user-friendly message when a user tries to access an invalid or non-existent route within the application.
+
+### Key Features:
+- **Error Display**:
+  - Shows a clear and bold **404** error code.
+  - Displays a polite error message:  
+    _"Sorry, the page you requested could not be found."_
+
+- **Navigation Assistance**:
+  - Provides a prominent link to guide users back to the Home Page:
+    - 🏠 **Back to Home** button with a FontAwesome home icon.
+
+- **Consistent Styling**:
+  - Styled to match the overall look and feel of the application.
+  - Centralized text and visually balanced layout.
+
+- **Responsive Design**:
+  - Page remains centered and readable on mobile devices, tablets, and large screens.
+
+- **Accessibility**:
+  - Clear hierarchy with heading tags (`<h1>`, `<h2>`, `<p>`) to help screen readers understand the page structure.
+  - Link styled for easy navigation by keyboard or assistive technology users.
+
+### Visual Elements:
+- 🚫 Large and recognizable "404" error number.
+- 🧭 Friendly suggestion for recovery (Back to Home).
+- 🎨 Visually clean and non-intimidating error page.
 
 
 #### Future Implementations
