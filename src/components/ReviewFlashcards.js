@@ -78,6 +78,30 @@ function ReviewFlashcards() {
     }
   }, [currentIndex, reviewEnded, filteredCards.length]);
 
+  const saveReviewResult = async (correctCount, total, score, streak) => {
+    try {
+      await api.post('/api/review-history/', {
+        correct: correctCount,
+        total: total,
+        score: score,
+        streak: streak,
+      });
+      console.log(' Review history saved!');
+    } catch (error) {
+      console.error(' Failed to save review history:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (reviewEnded && results.length > 0) {
+      const correctCount = results.filter(r => r.correct).length;
+      const total = results.length;
+      const score = Math.round((correctCount / total) * 100);
+
+      saveReviewResult(correctCount, total, score, streak);
+    }
+  }, [reviewEnded, results, streak]);
+
   const currentCard = filteredCards[currentIndex] || null;
 
   
@@ -161,7 +185,7 @@ function ReviewFlashcards() {
             }}
             className={styles.clearFiltersButton}
           >
-            ✨ Clear Filters
+            <i className="fas fa-eraser me-2"></i> Clear Filters
           </button>
         )}
       </div>
