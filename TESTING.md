@@ -1,8 +1,29 @@
-Return to the [project name README.md](README.md).
+Return to the [StudyCards App README.md](README.md).
 # Testing
 
 ## Index
 
+- [User Story Validation](#user-story-validation)
+- [Features Testing](#features-testing)
+  - [Favicon](#favicon)
+  - [Navigation Bar](#naviagation-bar)
+  - [Footer](#footer)
+  - [Home Page Testing](#home-page-testing)
+  - [Register Page Testing](#register-page-testing)
+  - [Login Page Testing](#login-page)
+  - [Dashboard Page Testing](#dashboard-page-testing)
+  - [Create Flashcard Page Testing](#create-flashcard-page-testing)
+  - [Edit Flashcard Page Testing](#edit-flashcard-page-testing)
+  - [Flashcards List Page Testing](#flashcards-list-page-testing)
+  - [Review Flashcards Page Testing](#review-flashcards-page-testing)
+  - [Review History (Server) Page Testing](#review-history-server)
+  - [NotFound (404) Page Testing](#notfound-404-page-testing)
+- [Code Validation](#code-validation)
+  - [HTML Validation](#html)
+  - [CSS Validation](#css)
+- [Performance](#performance)
+- [Bugs](#bugs)
+  - [Solved Bugs](#solved-bugs)
 
 ## User Story Validation
 
@@ -29,7 +50,7 @@ Return to the [project name README.md](README.md).
 
 | **Feature**     | **Action**                     | **Expected Result**                                                  | **Actual Result**                                                  |
 |------------------|-------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------|
-| Custom Favicon   | Open the site in a browser tab | The browser tab displays the MemoCards favicon  | Favicon loads successfully and matches brand                    |
+| Custom Favicon   | Open the site in a browser tab | The browser tab displays the StudyCards favicon  | Favicon loads successfully|
 
 ### Naviagation Bar
 
@@ -48,24 +69,21 @@ Return to the [project name README.md](README.md).
 
 | **Feature** | **Action** | **Expected Result**  | **Actual Result** |
 |-------------|------------|----------------------|-------------------|
-| Footer Placement         | Load the app and scroll to the bottom | The footer remains pinned at the bottom of the viewport |                                                  |                   |
-| Social Media Links       | Click on each social media icon (Facebook, Twitter, Instagram) | Each icon opens the corresponding social network in a new tab |                   |
-| Icon Hover Effect  | Hover the mouse pointer over a social icon  | The icon transitions to a different color |                   |
-| Responsive Layout  | Resize the browser window or test on mobile devices| The footer layout adjusts appropriately and remains fully visible on all screen sizes|                   |
+| Footer Placement         | Load the app and scroll to the bottom | The footer remains pinned at the bottom of the viewport | Works as expected |
+| Social Media Links       | Click on each social media icon (Facebook, Twitter, Instagram) | Each icon opens the corresponding social network in a new tab | Works as expecte |
+| Icon Hover Effect  | Hover the mouse pointer over a social icon  | The icon transitions to a different color |  Works as expecte |
+| Responsive Layout  | Resize the browser window or test on mobile devices| The footer layout adjusts appropriately and remains fully visible on all screen sizes| Works as expecte |
 
 ### Home Page Testing
 
 | **Feature**           | **Action**                              | **Expected Result**                                                       | **Actual Result**                                                             |
 |------------------------|-----------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| Landing Title          | Visit the Home page                    | "Boost Your Memory with StudyCards" heading is displayed                   | Title appears correctly at the top                                            |
-| Description Text       | View the page (logged out)             | Informative description about StudyCards is shown                         | Description displays correctly                                                |
-| Get Started Button     | Click "🚀 Get Started"                  | Redirects to the Registration page (`/register`)                           | Redirection works as expected                                                 |
+| Get Started Button     | Click "Get Started"                  | Redirects to the Registration page (`/register`)                           | Redirection works as expected                                                 |
 | Log In Link            | Click "Log In →"                       | Redirects to the Login page (`/login`)                                      | Redirection works correctly                                                   |
-| About Section          | Scroll down                            | "What is StudyCards?" section with description appears                    | About section visible and clear                                               |
 | How It Works Section   | View the ordered list                  | Shows steps: Create flashcards, Review progress, Master topics             | Steps are displayed in an ordered list format                                 |
 | Conditional Rendering  | Log in, then visit Home                | "Get Started" and "Log In" links disappear for logged-in users             | Conditional rendering works correctly                                         |
 | Responsiveness         | Resize browser to smaller screens      | Layout adjusts nicely without breaking design                             | Responsive and mobile-friendly                                                |
-| Accessibility Check    | Use Tab key to navigate                | Buttons and links are accessible via keyboard navigation                  | Fully accessible by keyboard                                                  |
+
 
 ### Register Page Testing
 
@@ -77,9 +95,8 @@ Return to the [project name README.md](README.md).
 | Validation Errors       | Submit incomplete or invalid form      | Validation errors appear (e.g., passwords don't match, weak password)            | Proper error messages are displayed clearly                                   |
 | Server Errors           | Simulate server error                  | Error like "Server error (500)" or appropriate message is shown                  | Errors caught and displayed appropriately                                     |
 | Password Requirements   | View password requirements             | List of password rules shown below the form                                      | Password rules list displays properly                                          |
-| Loading State           | Submit form                            | A slight delay is handled with smooth experience (optional spinner/message)      | User feedback (form still responsive)                                          |
 | Responsiveness          | Resize browser to mobile view          | Form remains centered, fields resize nicely                                      | Fully responsive on different screen sizes                                    |
-| Accessibility Check     | Use Tab key to navigate fields/buttons | User can navigate fields and buttons easily via keyboard                        | All inputs and buttons are accessible                                          |
+
 
 ### Login Page 
 
@@ -90,9 +107,6 @@ Return to the [project name README.md](README.md).
 | Submit Login Form    | Submit correct username and password     | User is logged in, redirected to the Dashboard, and success message appears  | Successful login and redirection confirmed                                   |
 | Error Handling       | Submit invalid credentials               | Clear error messages are displayed                                           | Error messages appear correctly for wrong login attempts                    |
 | Loading State        | Click "Login" and observe immediately    | Loading spinner/message ("Logging you in, please wait...") appears           | Loading message shows during login process                                   |
-| Success Feedback     | Submit correct login details             | A success message ("Login successful!") is displayed temporarily             | Success message displays correctly                                           |
-| Token Storage        | After successful login                   | Token and Username are saved in localStorage                                 | Token and Username stored correctly in localStorage                         |
-| Accessibility Check  | Navigate using Tab key                   | Form fields and button are reachable via keyboard navigation                 | Accessible via keyboard                                                      |
 | Responsiveness       | Resize the screen                        | Form layout adapts properly to smaller devices                               | Fully responsive and user-friendly on all screen sizes                      |
 
 ### Dashboard Page Testing
@@ -106,7 +120,7 @@ Return to the [project name README.md](README.md).
 | View Server History Button| Click "View Server History" button     | Navigates to `/flashcards/history-server` page                             | Button navigates correctly                                                 |
 | FontAwesome Icons         | View each button                      | Each dashboard button includes a related FontAwesome icon                 | Icons appear correctly next to button text                                |
 | Responsive Design         | Resize browser to mobile view         | Buttons are stacked vertically and centered on smaller devices            | Layout adapts well on tablets and phones                                  |
-| Accessibility Check       | Navigate with Tab key                 | Buttons are focusable and accessible with the keyboard                     | Accessible navigation between buttons                                    |
+
 
 
 ### Create Flashcard Page Testing
@@ -122,14 +136,12 @@ Return to the [project name README.md](README.md).
 | Form Validation        | Submit empty required fields               | Appropriate error messages are displayed                             | Errors appear when required fields are empty                            |
 | Submit Flashcard       | Fill out form and click "Save Flashcard"     | New flashcard is created and user is redirected to flashcard list     | Flashcard is created and user is redirected                             |
 | Error Handling         | Cause an API error (simulate)               | Error message is displayed                                            | Error is handled and shown                                              |
-| Accessibility Check    | Navigate form fields with Tab key           | All form elements are focusable                                       | Accessible by keyboard navigation                                       |
 | Responsive Layout      | Resize browser to mobile view               | Form fields and button remain readable and usable on smaller devices | Form adapts properly to small screens                                   |
 
 ### Edit Flashcard Page Testing
 
 | **Feature**           | **Action**                                 | **Expected Result**                                                    | **Actual Result**                                                         |
 |------------------------|--------------------------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| Page Title             | View the page                             | "Edit Flashcard" title is displayed                                     | Title is correctly shown                                                   |
 | Form Pre-fill          | Navigate to edit a specific flashcard      | Existing flashcard data is pre-filled in the form fields                | Flashcard details load and populate fields                                |
 | Question Input         | Edit the Question field                   | Updated text is accepted                                                | Text input updates correctly                                               |
 | Answer Input           | Edit the Answer field                     | Updated text is accepted                                                | Text input updates correctly                                               |
@@ -138,7 +150,6 @@ Return to the [project name README.md](README.md).
 | Form Validation        | Submit empty required fields              | Appropriate error messages are displayed                               | Errors appear when required fields are empty                               |
 | Submit Changes         | Modify form and click "Update Flashcard"   | Flashcard is updated and user is redirected to flashcard list           | Flashcard updates successfully and redirects                              |
 | Error Handling         | Cause an API error (simulate)             | Error message is displayed                                              | Error is handled and shown                                                 |
-| Accessibility Check    | Navigate form fields with Tab key         | All form elements are focusable                                         | Form is accessible via keyboard navigation                                |
 | Responsive Layout      | Resize browser to mobile view             | Form fields and button remain readable and usable on smaller devices   | Layout adapts properly for mobile screens                                  |
 
 ### Flashcards List Page Testing
@@ -156,7 +167,6 @@ Return to the [project name README.md](README.md).
 | No Flashcards Message     | If no flashcards or no match after filtering | "No matching flashcards found. Try adjusting your filters!" is displayed       | Message appears when there are no results                                     |
 | Loading State             | Load the page                               | "Loading..." is displayed while flashcards are being fetched                  | Loading indicator is visible during fetch                                    |
 | Error State               | Simulate API error                          | "Failed to fetch flashcards. Please try again later." error message appears    | Error message is handled properly                                             |
-| Accessibility Check       | Navigate list and buttons via Tab key       | All flashcards, filters, and buttons are focusable                            | Page is keyboard-accessible                                                   |
 | Responsive Layout         | Resize browser to mobile view               | List, buttons, and filters adapt to smaller screens                           | Fully responsive across screen sizes                                          |
 
 ### Review Flashcards Page Testing
@@ -172,11 +182,10 @@ Return to the [project name README.md](README.md).
 | Review Ended Screen       | Finish reviewing all cards                  | Final score, number of correct answers, and action buttons are shown         | Review summary displays correctly                                          |
 | Review Again Button       | Click "Review Again" after finishing        | Review resets and new session starts                                         | Reset works, and new review begins                                          |
 | Navigation Links          | Click "Back to Flashcards" or "Home"         | User navigates back to Flashcards list or Home page                          | Links work as expected                                                     |
-| Streak Display            | Answer flashcards correctly                | 🔥 Streak count increases visibly                                            | Streak updates accurately                                                  |
+| Streak Display            | Answer flashcards correctly                |  Streak count increases visibly                                            | Streak updates accurately                                                  |
 | Filters                   | Use Topic and Status dropdowns             | Cards are filtered accordingly                                               | Filtering by topic and status works                                         |
 | Clear Filters             | Clear Topic and Status                     | All flashcards are visible again                                              | Filters are reset correctly                                                |
 | Responsiveness            | Resize browser window                      | Review layout adapts for mobile, tablet, and desktop                         | Fully responsive                                                           |
-| Accessibility             | Navigate using Tab key                     | All interactive elements (flip card, answer buttons, filters) are reachable | Page is keyboard-accessible                                                |
 
 ### Review History (Server) 
 
@@ -192,7 +201,7 @@ Return to the [project name README.md](README.md).
 | Date Format               | View the 'Date' column                               | Dates are formatted into a readable local date and time                       | Dates are correctly formatted                                                |
 | Navigation Button         | Click "Back to Home"                                 | Redirects the user to the Home page                                            | Navigation works correctly                                                   |
 | Responsiveness            | Resize browser window                               | Table and stats remain usable and scrollable on mobile/tablet                 | Table is responsive with overflow scroll on small devices                    |
-| Accessibility             | Navigate using keyboard                             | Table rows and navigation buttons are reachable via Tab key                   | Accessible via keyboard                                                      |
+
 
 ### NotFound (404) Page Testing
 
@@ -201,9 +210,7 @@ Return to the [project name README.md](README.md).
 | 404 Error Code        | Navigate to a non-existent URL       | A large "404" error code should be displayed                            | "404" error code is clearly visible                                   |
 | Error Message         | View the page content                | A message "Page Not Found" and a short description are displayed        | Proper error message and explanation shown                            |
 | Back to Home Button   | Click "Back to Home" link             | Redirects the user back to the home page                                | Redirect works correctly, returns to home                            |
-| Font Awesome Icon     | View the "Back to Home" button        | Home icon (house) appears next to "Back to Home" link                   | FontAwesome home icon is visible                                      |
 | Responsiveness        | Resize browser window                | The error page remains centered and responsive across all devices      | Page remains centered and readable on different screen sizes          |
-| Accessibility         | Navigate using keyboard              | The "Back to Home" link is reachable via Tab key                        | Accessible via keyboard navigation                                   |
 
 
 ## Code Validation
@@ -226,21 +233,6 @@ Below are the results of CSS validation using the [W3C CSS Validation Service](h
 ![CSS validation register](./src/assets/screenshots/validation/css/css_register.png)
 ![CSS validation review](./src/assets/screenshots/validation/css/css_review.png)
 
-
-### Console
-Below are the results of console output, using the Google Developer Tools, no errors have been found.
-
-#### Dashboard Page
-![Console output Dashboard page](documentation/validation/console/dashboard_console.png)
-
-The website has been tested in the following browsers:
-
-### Google Chrome
-![Website in Google Chrome](documentation/validation/browsers/chrome_compatibility.png)
-### Microsoft Edge
-![Website in Microsoft Edge](documentation/validation/browsers/edge_compatibility.png)
-### Firefox
-![Website in Firefox](documentation/validation/browsers/firefox_compatibility.png)
 
 ## Performance
 Each page has been reviewed using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/):
