@@ -26,6 +26,37 @@ StudyCards is built using a **React.js** front-end and a **Django REST Framework
 
 ## Index
 
+- [Project Description](#project-description)
+- [Main Goals](#main-goals)
+- [User Goals](#user-goals)
+- [Site Owner Goals](#site-owner-goals)
+- [Features](#features)
+  - [Favicon](#favicon)
+  - [Navigation Bar](#navigation-bar)
+  - [Footer](#footer)
+  - [Home Page](#home-page)
+  - [Register Page](#register-page)
+  - [Login Page](#login-page)
+  - [Dashboard Page](#dashboard-page)
+  - [Create Flashcard Page](#create-flashcard-page)
+  - [Edit Flashcard Page](#edit-flashcard-page)
+  - [Flashcards List Page](#flashcards-list-page)
+  - [Review Flashcards Page](#review-flashcards-page)
+  - [Review History Page](#review-history-page)
+  - [Not Found (404) Page](#not-found-404-page)
+- [Future Implementations](#future-implementations)
+- [Design](#design)
+  - [Wireframes](#wireframes)
+  - [Colour Scheme](#colour-scheme)
+  - [Typography](#typography)
+- [Testing](#testing)
+- [Deployment](#deployment)
+  - [Heroku Deployment](#heroku)
+  - [Fork Repository](#fork-repository)
+  - [Local Clones](#local-clones)
+- [Credits](#credits)
+  - [Technologies Used](#technologies-used)
+  - [References](#references)
 
 ## Project Description
 
@@ -505,6 +536,7 @@ To deploy the project on your own computer you can clone it:
 - [React Router Documentation](https://reactrouter.com/en/main) — Used for handling navigation and route protection between different pages.
 - [Codevolution - React Router DOM Tutorial (YouTube)](https://www.youtube.com/watch?v=Ul3y1LXxzdU) — used to get better understanding of `react-router-dom` for navigation.
 - [Axios Documentation](https://axios-http.com/docs/intro) — used for sending API requests between the front-end and back-end.
+- [API Tutorial - Fetch Data with Axios - (Example in React)](https://www.youtube.com/watch?v=bMRrSqWFKqM) used for better understanding of using Axios in React
 - [W3 schools](https://www.w3schools.com/) - used for general documentation
 - [ChatGPT](https://openai.com/index/chatgpt/) - used for general debugging along with other tools and coding advice
 - [Stackoverflow](https://stackoverflow.com/) - used for general code advice
