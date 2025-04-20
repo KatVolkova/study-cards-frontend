@@ -8,19 +8,19 @@ Return to the [project name README.md](README.md).
 
 | **User Story**     | **What to Expect** | **Result** |
 |--------------------|--------------------|------------|
-| Navigation         | Navbar visible on all pages with correct links based on login state | ✅ Implemented and working |
-| Routing            | Clicking links updates route without full page reload | ✅ Implemented and working |
-| Sign Up            | User can register with username, email, and password, redirected to dashboard on success | ✅ Implemented and working |
-| Sign In            | User can log in and is redirected to dashboard; token is saved | ✅ Implemented and working |
-| Logged-In Status   | Navbar updates to show username and logout when logged in | ✅ Implemented and working |
-| Token Refreshing   | User stays logged in until they manually log out | ✅ Implemented and working |
-| Conditional Navbar Rendering | Navbar shows correct options depending on authentication state | ✅ Implemented and working |
-| Create Flashcards  | Users can submit a new flashcard with a question, answer, and topic | ✅ Implemented and working |
-| Edit Flashcards    | Users can update existing flashcards and changes are saved | ✅ Implemented and working |
-| Delete Flashcards  | Users can delete flashcards with confirmation | ✅ Implemented and working |
-| Review Flashcards  | Users can review flashcards by flipping and marking correct/incorrect | ✅ Implemented and working |
-| Track Progress     | Users can view and update flashcard status as new, reviewing, or mastered | ✅ Implemented and working |
-| Filter Flashcards  | Users can filter flashcards by topic or status to focus studies | ✅ Implemented and working |
+| Navigation         | Navbar visible on all pages with correct links based on login state |  Works as expected |
+| Routing            | Clicking links updates route without full page reload |  Works as expected |
+| Sign Up            | User can register with username, email, and password, redirected to dashboard on success |  Works as expected |
+| Sign In            | User can log in and is redirected to dashboard; token is saved |  Works as expected |
+| Logged-In Status   | Navbar updates to show username and logout when logged in |  Works as expected |
+| Token Refreshing   | User stays logged in until they manually log out |  Works as expected |
+| Conditional Navbar Rendering | Navbar shows correct options depending on authentication state |  Works as expected |
+| Create Flashcards  | Users can submit a new flashcard with a question, answer, and topic |  Works as expected |
+| Edit Flashcards    | Users can update existing flashcards and changes are saved |  Works as expected |
+| Delete Flashcards  | Users can delete flashcards with confirmation |  Works as expected |
+| Review Flashcards  | Users can review flashcards by flipping and marking correct/incorrect |  Works as expected |
+| Track Progress     | Users can view and update flashcard status as new, reviewing, or mastered |  Works as expected |
+| Filter Flashcards  | Users can filter flashcards by topic or status to focus studies |  Works as expected |
 
 
 ## Features Testing
@@ -212,24 +212,20 @@ Return to the [project name README.md](README.md).
 Below are the results of HTML validation for each page, using the [W3C Markup Validation Service](https://validator.w3.org):
 
 #### Main page
-![HTML validation of Dashboard page](documentation/validation/html/validation_html_dashboard_result.png)
+![HTML validation](./src/assets/screenshots/validation/html/html_validator.png)
 
 ### CSS 
-Below are the results of CSS validation by direct input, using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator).
-![CSS validation by direct input](documentation/validation/css/css_validation_direct_input.png)
-![CSS validation by direct input result](documentation/validation/css/css_validation_confirmation.png)
+Below are the results of CSS validation using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator).
+![CSS validation Home page](./src/assets/screenshots/validation/css/css_home.png)
+![CSS validation card list ](./src/assets/screenshots/validation/css/css_card_list.png)
+![CSS validation create a card](./src/assets/screenshots/validation/css/css_create_card.png)
+![CSS validation dashboard](./src/assets/screenshots/validation/css/css_dashboard.png)
+![CSS validation edit card](./src/assets/screenshots/validation/css/css_edit_card.png)
+![CSS validation history](./src/assets/screenshots/validation/css/css_history.png)
+![CSS validation login](./src/assets/screenshots/validation/css/css_login.png)
+![CSS validation register](./src/assets/screenshots/validation/css/css_register.png)
+![CSS validation review](./src/assets/screenshots/validation/css/css_review.png)
 
-### JavaScript
-Below are the results of JavaScript validation for each file, using the [JSHint Validation Service](https://jshint.com/):
-
-#### dashboard.js
-![JS validation dashboard.js by direct input result](documentation/validation/js/validation_dashboardjs_result.png)
-
-### Python
-Below are the results of Python validation by direct input, using the [CI Python Linter](https://pep8ci.herokuapp.com/).
-
-#### admin.py
-![Python validation admin.py by direct input result](documentation/validation/python/validation_adminpy_result.png)
 
 ### Console
 Below are the results of console output, using the Google Developer Tools, no errors have been found.
@@ -246,22 +242,25 @@ The website has been tested in the following browsers:
 ### Firefox
 ![Website in Firefox](documentation/validation/browsers/firefox_compatibility.png)
 
-## Responsiveness
-All pages have been tested for responsiveness, using the [Responsive Web Design Checker](https://ui.dev/amiresponsive):
-
-### Dashboard Page
-![Responsiveness report for Dashboard page](documentation/validation/responsiveness/dashboard_responsiveness.png)
-
-### 404 Error
-![Responsiveness report for 404 error page](documentation/validation/responsiveness/404_error_responsiveness.png)
-
 ## Performance
-Each page has been reviewed using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/), for both mobile and desktop:
+Each page has been reviewed using [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/):
 
-### Dashboard Page -  Desktop
-![Desktop performance report for Dashboard page](documentation/validation/lighthouse/lighthouse_dashboard_desktop.png)
-### Dashboard Page -  Mobile
-![Mobile performance report for Dashboard page](documentation/validation/lighthouse/lighthouse_dashboard_mobile.png)
+Home page
+![Lighthouse Home Page](./src/assets/screenshots/validation/lighthouse/lighthouse_home.png)
+Create a card
+![Lighthouse Create card](./src/assets/screenshots/validation/lighthouse/lighthouse_create_card.png)
+Dashboard
+![Lighthouse Dashboard](./src/assets/screenshots/validation/lighthouse/lighthouse_dashboard.png)
+Edit Card
+![Lighthouse Edit card](./src/assets/screenshots/validation/lighthouse/lighthouse_edit_card.png)
+History
+![Lighthouse History](./src/assets/screenshots/validation/lighthouse/lighthouse_history.png)
+Login
+![Lighthouse Login](./src/assets/screenshots/validation/lighthouse/lighthouse_login.png)
+Register
+![Lighthouse Register](./src/assets/screenshots/validation/lighthouse/lighthouse_register.png)
+Review
+![Lighthouse Review](./src/assets/screenshots/validation/lighthouse/lighthouse_review.png)
 
 ## Bugs
 
@@ -275,7 +274,4 @@ Each page has been reviewed using [Google Lighthouse](https://developer.chrome.c
 | 4              | Flashcards text overflowed on small devices                | No responsive styling was applied to flashcard elements  | Added media queries to adjust font size, padding, and layout on smaller screens |
 | 5              | Review flashcards component crashed if no cards were available | No check if array was empty before accessing card properties | Added conditional rendering and fallback messages when no flashcards were available |
 
-### Unresolved bugs
 
-| **Bug** | **Description**|
-|---------|-----------------|
