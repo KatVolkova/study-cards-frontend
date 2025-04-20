@@ -8,20 +8,18 @@ Visit the deployed site: [Study Cards App](https://study-cards-frontend-2200912d
 ## Overview
 
 **StudyCards** is a web-based application designed to help users study and retain information more efficiently using digital flashcards.  
-It offers a simple, intuitive, and responsive interface where users can create, organize, review, and track their learning progress.
-
-The platform is suitable for students, lifelong learners, and anyone aiming to improve their knowledge retention.  
-StudyCards focuses on delivering a distraction-free and user-friendly study experience while setting a foundation for more advanced features like spaced repetition and learning analytics.
+It offers a simple, intuitive, and responsive interface where users can create, organize, review, and track their learning progress.The app is suitable for anyone aiming to improve their knowledge retention.  
 
 Key highlights include:
+
 - Secure user registration and login system
 - Personalized dashboard for quick access to learning tools
 - Ability to create, edit, delete, and filter flashcards
-- Review mode with instant feedback and progress tracking
+- Review mode with instant results and progress tracking
 - Full responsiveness across mobile, tablet, and desktop devices
-- Clean, modern design with accessibility considerations
 
-StudyCards is built using a **React.js** front-end and a **Django REST Framework** back-end, ensuring a scalable and maintainable codebase ready for future enhancements.
+
+StudyCards is built using a **React.js** front-end and a **Django REST Framework** .
 
 ---
 
@@ -31,17 +29,7 @@ StudyCards is built using a **React.js** front-end and a **Django REST Framework
 
 ## Project Description
 
-**StudyCards** is a full-stack web application that empowers users to create, manage, and review flashcards to boost memory retention and learning efficiency.  
-The app offers a simple yet powerful study system, helping users structure their knowledge in small, manageable pieces. 
-
-Built with **React** (front-end) and **Django REST Framework** (back-end), StudyCards provides:
-- A clean and responsive user interface
-- Authentication with secure login and registration
-- Tools to create, edit, filter, and delete flashcards
-- A dynamic review system to track progress
-- Mobile-friendly design for learning anytime, anywhere
-
-The project is designed with scalability and future enhancements in mind, making it a strong foundation for incorporating features like spaced repetition algorithms and advanced analytics.
+**StudyCards** is a full-stack web application that empowers users to create, manage, and review flashcards to boost memory retention and learning efficiency. The has been built with **React** (front-end) and **Django REST Framework** (back-end). The project is designed with scalability and future enhancements in mind.
 
 ---
 
@@ -55,23 +43,21 @@ The project is designed with scalability and future enhancements in mind, making
 
 ## User Goals
 
-- Easily register, log in, and manage a personalized collection of flashcards.
-- Quickly create new flashcards categorized by topic and learning status.
+- Easily register, log in, and manage a personalised collection of flashcards.
+- Quickly create new flashcards categorised by topic and learning status.
 - Review flashcards effectively through a user-friendly interface with progress tracking.
 - Access the platform from any device to study on the go.
 
 ## Site Owner Goals
 
 - Provide a reliable, secure, and professional service that encourages repeat use.
-- Collect feedback for future improvements like spaced repetition algorithms or deck management.
-- Grow the user base by offering a high-quality, mobile-friendly study tool.
-- Maintain a clean and maintainable codebase to support long-term feature development and scaling.
+- Collect feedback for future improvements like spaced repetition or deck creation.
+- Grow the user base.
 
 
+## Features
 
-### Features
-
-#### Favicon
+### Favicon
 
 **Custom Favicon**
 
@@ -84,8 +70,7 @@ A personalized favicon has been added to enhance branding and improve user exper
 - It helps distinguish the tab visually among others.
 
 
-
-#### Navigation
+### Navigation Bar
 
 - Navigation bar - large screen - signed user
 ![navigation bar large screen signed user](./src/assets/screenshots/features/navbar/navbar.png)
@@ -100,26 +85,9 @@ A personalized favicon has been added to enhance branding and improve user exper
 ![navigation bar logo](./src/assets/screenshots/features/Logo.png)
 
 
-The **StudyCards** app features a responsive navigation bar located at the top of every page for seamless user experience.
+The **StudyCards** app features a responsive navigation bar located at the top of every page. It provides quick access to the main sections of the StudyCards app and dynamically updates based on the user's authentication status.
 
-The Navigation Bar displays:
-- the app **logo** and **name**.
-- **Navigation Links**:
-  - `Home` — redirects to the homepage.
-  - `Log In` — directs users to the authentication page.
-  - `Register` — allows new users to sign up.
-
-Styling & Behavior:
-
-- Active page links are underlined for better user feedback.
-- Includes hover transitions for better interactivity.
-- Fully responsive — adapts to mobile and desktop viewports.
-
-## Navbar
-
-The **navigation bar** provides quick access to the main sections of the StudyCards app and dynamically updates based on the user's authentication status.
-
-### Features:
+Navbar displays:
 
 - **Logo**:
   - Displays the StudyCards logo on the left side.
@@ -137,12 +105,12 @@ The **navigation bar** provides quick access to the main sections of the StudyCa
   - On smaller screens (mobile and tablets), the Navbar **collapses** into a hamburger menu for better accessibility.
   - The menu can be expanded/collapsed to navigate between sections easily.
 
-### Technologies:
+- **Technologies**:
 - Built using **React Bootstrap Navbar** for responsive behavior.
 - **Font Awesome** icons are used next to navigation links to enhance visual clarity.
 
 
-#### Footer
+### Footer
 
 ![footer](./src/assets/screenshots/features/footer.png)
 
@@ -150,12 +118,14 @@ The footer is pinned to the bottom of the page,  it displays:
 
 - A set of social media icons (Facebook, Twitter, Instagram). 
 - Hover effects for icons, changing their color upon interaction to enhance user feedback.
+- When clicked redirects to the relevant social media site.
 
 This design ensures that users can always access key information about our application and follow us on social platforms, regardless of where they are on the page.
 
-## Home Page
+### Home Page
 
-![Home Page](./src/assets/screenshots/features/)
+![Home Page - Not Signed In](./src/assets/screenshots/features/home_page_notsigned.png)
+![Home Page - Signed In](./src/assets/screenshots/features/homepage_signed.png)
 
 The Home Page serves as the welcoming entry point for both new and returning users.
 
@@ -176,14 +146,9 @@ The Home Page serves as the welcoming entry point for both new and returning use
     2. Review and track your progress.
     3. Master topics over time.
 
-- **Mobile-Friendly and Responsive**:
-  - Designed to adapt smoothly to various screen sizes, from desktop monitors to mobile devices.
-
-- **Accessible and SEO-Ready**:
-  - Semantic headings (`<h1>`, `<h3>`) are used to structure the content for better readability and SEO performance.
 
 ### Visual Elements:
-- 🚀 Icon on the **Get Started** button for visual engagement.
+- Icon on the **Get Started** button for visual engagement.
 - Clear, friendly language that encourages users to take the next step.
 
 ## Register Page
@@ -209,10 +174,6 @@ The Register Page allows new users to easily create a StudyCards account.
     - Allow special characters.
   - A helpful password guideline is displayed below the form.
 
-- **Feedback to Users**:
-  - Displays success message upon successful registration.
-  - Shows detailed error messages if the registration fails (e.g., password too short, passwords do not match, username already taken).
-
 - **Post-Registration Actions**:
   - After successful registration:
     - The user is redirected to the **Home** page.
@@ -223,13 +184,6 @@ The Register Page allows new users to easily create a StudyCards account.
     - Validation issues.
     - Network issues.
     - Server-side errors.
-
-- **Mobile-Friendly and Responsive**:
-  - Fully optimized layout for mobile, tablet, and desktop screens.
-
-### Visual Elements:
--  **Success message** after registration.
--  **Error messages** displayed in a user-friendly manner.
 
 
 
@@ -243,33 +197,8 @@ The Login Page allows returning users to securely access their StudyCards accoun
 - **User Authentication**:
   - A clean form with fields for **Username** and **Password**.
   - Validation to ensure required fields are filled before submission.
-  - Displays meaningful error messages if login fails (e.g., invalid credentials, server issues).
-
-- **Feedback to Users**:
   - Shows a loading indicator ("Logging you in, please wait...") during the authentication process.
-  - Displays a success message upon successful login.
-
-- **Security**:
-  - Secure login request using **Token Authentication** (token is stored in `localStorage` upon success).
-
-- **Post-Login Actions**:
-  - After successful login:
-    - Stores the **token** and **username** locally.
-    - Redirects the user automatically to the **Dashboard**.
-
-- **Error Handling**:
-  - Comprehensive error catching and display:
-    - Validation errors (e.g., missing fields).
-    - Authentication errors (wrong username or password).
-    - Server errors or network failures.
-
-- **Mobile-Friendly and Responsive**:
-  - Optimized for all screen sizes for smooth login on mobile devices as well.
-
-### Visual Elements:
--  **Loading spinner** text when logging in.
--  **Error messages** clearly displayed if login fails.
-
+  - After successful login redirects the user automatically to the **Dashboard**.
 
 
 ## Dashboard Page
@@ -288,27 +217,6 @@ The Dashboard Page acts as the central hub for logged-in users, giving quick acc
   - **Review Flashcards**: Start a flashcard review session.
   - **View Server History**: View past review session statistics stored on the server.
 
-- **Design & Layout**:
-  - Clean and user-friendly button layout.
-  - Buttons use Font Awesome icons for better visual clarity:
-    -  **Create Flashcard**
-    -  **View All Flashcards**
-    -  **Review Flashcards**
-    -  **View Server History**
-  - Buttons are styled consistently for a seamless experience.
-
-- **Responsiveness**:
-  - The dashboard adapts well to different screen sizes (desktop, tablet, mobile).
-  - Buttons remain touch-friendly and easy to click on smaller screens.
-
-- **User Experience**:
-  - Immediate redirection to selected actions without reloading the page.
-  - Clear labeling and intuitive navigation for quick access.
-
-### Visual Elements:
--  Centralized button panel.
--  Quick access to all study activities.
--  Minimalist and responsive design.
 
 ## Create Flashcard Page
 
@@ -327,26 +235,6 @@ The Create Flashcard Page allows users to easily add new flashcards to their col
     - `Mastered`
   - **Default Status**: New flashcards are assigned a "New" status unless changed manually.
 
-- **Form Handling**:
-  - Validation for required fields (question and answer must not be empty).
-  - Error messages displayed clearly if submission fails (e.g., missing fields or server issues).
-  - Displays a success message and redirects the user back to the Flashcards List upon successful creation.
-
-- **API Integration**:
-  - Submits flashcard data securely to the backend via `POST` request.
-
-- **Design & Layout**:
-  - Clean, minimalistic form layout.
-  - Input fields and buttons are styled consistently.
-  - Submit button is designed to be large and easy to interact with, especially on mobile.
-
-- **Responsiveness**:
-  - Fully responsive for mobile, tablet, and desktop views.
-  - Maintains user-friendly touch targets for smaller screens.
-
-- **Accessibility**:
-  - Form inputs include clear placeholders for better guidance.
-  - Button has an `aria-label` for improved screen reader support.
 
 ### Visual Elements:
 -  Simple and intuitive form structure.
@@ -355,7 +243,7 @@ The Create Flashcard Page allows users to easily add new flashcards to their col
 
 ## Edit Flashcard Page
 
-![Edit card component](./src/assets/screenshots/features/)
+![Edit card component](./src/assets/screenshots/features/Screenshot%202025-04-20%20231129.png)
 
 The Edit Flashcard Page allows users to update an existing flashcard's details, helping them keep their study materials accurate and up-to-date.
 
@@ -378,25 +266,7 @@ The Edit Flashcard Page allows users to update an existing flashcard's details, 
   - Displays meaningful error messages if the update fails.
   - Redirects user to the Flashcards List after successful update.
 
-- **API Integration**:
-  - Sends updated flashcard data via `PUT` request to the backend.
 
-- **Design & Layout**:
-  - Consistent and user-friendly layout shared with the Create Flashcard page.
-  - Error and success feedback provided directly on the page.
-
-- **Responsiveness**:
-  - Fully optimized for mobile, tablet, and desktop screens.
-  - Form elements remain accessible and usable on all device sizes.
-
-- **Accessibility**:
-  - Clear placeholder texts for better usability.
-  - Well-structured form for screen readers and keyboard navigation.
-
-### Visual Elements:
--  Editable input fields.
--  Dropdown to easily adjust the flashcard’s review status.
--  Clean confirmation flow after updating flashcards.
 
 ## Flashcards List Page
 
@@ -427,35 +297,17 @@ The Flashcards List Page provides users with an organized overview of all their 
   - Displays a helpful message if no flashcards match the selected filters.
   - Encourages users to add new flashcards if none exist.
 
-- **Design & Layout**:
-  - Clean and simple list-style layout with distinct cards for each flashcard.
-  - Visual separation between flashcards for better readability.
-
-- **Responsiveness**:
-  - Optimized for various screen sizes — mobile, tablet, and desktop views.
-  - Font sizes and spacing adjust appropriately for smaller screens.
-
-- **Accessibility**:
-  - Interactive elements like edit and delete buttons are easily navigable via keyboard.
-  - Semantic HTML elements used for better screen reader support.
-
-### Visual Elements:
--  Flashcards displayed in an organized list.
--  Edit and Delete icons for quick management.
--  Clear Filters button to refresh the view easily.
--  Create Flashcard button to encourage adding more content.
-
 
 ## Review Flashcards Page
 
 ![Review Flashcards Component](./src/assets/screenshots/features/review_card.png)
 
-The Review Flashcards Page enables users to practice their flashcards interactively, strengthening memory retention and tracking their progress over time.
+The Review Flashcards Page enables users to practice memorising their flashcards.
 
 ### Key Features:
 - **Smart Review Flow**:
-  - Flashcards are displayed one at a time, allowing the user to focus on each card individually.
-  - Clicking on a card flips it to reveal the answer.
+  - Flashcards are displayed one at a time.
+  - Clicking on a card flips it to show the answer.
   - After viewing the answer, users can mark their response as **Correct** or **Incorrect**.
 
 - **Streak Tracking**:
@@ -479,27 +331,15 @@ The Review Flashcards Page enables users to practice their flashcards interactiv
   - **Clear Filters** button available to reset selections.
 
 - **Shuffle Logic**:
-  - Flashcards are randomized to ensure varied practice and prevent memorizing card order.
+  - Flashcards are shuffled to avoid memorising card order.
 
-- **Responsive Design**:
-  - Mobile-friendly design with accessible buttons and readable font sizes.
-  - Flip animations and buttons scale nicely across devices.
 
-- **Accessibility**:
-  - Keyboard navigable buttons.
-  - Clear focus states for interactive elements.
-
-### Visual Elements:
--  Streak Counter displayed prominently.
-- ✔️ and ❌ Buttons for easy marking.
--  Score summary after completing a session.
--  Clear filters and shuffle logic to keep sessions effective and fresh.
 
 ## Review History Page
 
 ![Review History Component](./src/assets/screenshots/features/review_history.png)
 
-The Review History Page allows users to track their past study sessions and measure their learning progress over time.
+The Review History Page allows users to track their past study sessions.
 
 ### Key Features:
 - **Session Records**:
@@ -510,38 +350,14 @@ The Review History Page allows users to track their past study sessions and meas
     - **Correct** answers
     - **Total** questions answered
 
-- **Statistics Summary**:
-  - At the top of the page, key statistics are highlighted:
-    -  **Best Score**: The highest score the user has ever achieved.
-    -  **Longest Streak**: The best consecutive correct answer streak.
-    -  **Total Sessions**: Total number of completed review sessions.
-
-- **Pagination Handling**:
-  - Handles large datasets by fetching and combining paginated API results automatically behind the scenes.
-
-- **Responsive Table Design**:
-  - The review history table adapts to different screen sizes.
-  - Scrollable on mobile devices for easier navigation without breaking the layout.
-
-- **Loading State**:
-  - Displays a friendly loading indicator while the data is being fetched from the server.
-
 - **Navigation**:
   - After reviewing history, users can easily return:
     -  **Back to Home** button available.
 
-- **Accessibility**:
-  - Table elements are structured semantically for better screen reader support.
-  - Clear and consistent link styling for improved focus visibility.
-
-### Visual Elements:
--  Clean and readable table format for easy analysis.
--  Highlighted stats bar for quick insights.
--  Smooth transitions when loading new data.
 
 ## Not Found (404) Page
 
-![Not Found Page](./src/assets/screenshots/features/)
+![Not Found Page](./src/assets/screenshots/features/notfound_page.png)
 
 The Not Found Page provides a user-friendly message when a user tries to access an invalid or non-existent route within the application.
 
@@ -555,46 +371,26 @@ The Not Found Page provides a user-friendly message when a user tries to access 
   - Provides a prominent link to guide users back to the Home Page:
     -  **Back to Home** button with a FontAwesome home icon.
 
-- **Consistent Styling**:
-  - Styled to match the overall look and feel of the application.
-  - Centralized text and visually balanced layout.
-
-- **Responsive Design**:
-  - Page remains centered and readable on mobile devices, tablets, and large screens.
-
-- **Accessibility**:
-  - Clear hierarchy with heading tags (`<h1>`, `<h2>`, `<p>`) to help screen readers understand the page structure.
-  - Link styled for easy navigation by keyboard or assistive technology users.
-
-### Visual Elements:
--  Large and recognizable "404" error number.
--  Friendly suggestion for recovery (Back to Home).
--  Visually clean and non-intimidating error page.
 
 
 ## Future Implementations
 
-Here are some planned enhancements to further improve the StudyCards platform:
+Here are some planned enhancements to further improve the StudyCards app:
 
-1. **Spaced Repetition Algorithm**  
-   Implement an intelligent review system that schedules flashcard reviews based on the user's performance and memory retention, following scientifically proven spaced repetition techniques.
+1. **Spaced Repetition**  
+   Implement an intelligent review system that schedules flashcard reviews based on the user's performance and memory retention.
 
-2. **Deck Organization**  
-   Allow users to group flashcards into customizable **Decks** based on topics, courses, or personal study plans for better organization and easier navigation.
+2. **Deck Organisation**  
+   Allow users to group flashcards into customizable decks.
 
 3. **Flashcard Tags and Search**  
    Introduce tagging functionality and an advanced search bar so users can quickly find specific flashcards based on keywords, topics, or difficulty levels.
 
 4. **Progress Tracking Dashboard**  
-   Expand the Dashboard with visual analytics (e.g., charts and graphs) to display user progress, improvement trends, mastery rates per deck, and areas needing more practice.
+   Expand the Dashboard with visual analytics (e.g., charts) to display user progress, improvement trends, mastery rates per deck, and areas needing more practice.
 
-5. **Dark Mode and Theme Customization**  
-   Provide users with a **Dark Mode** option and multiple color themes to enhance usability, accessibility, and personal comfort during long study sessions.
 
 ---
-
-These features are intended to make StudyCards more intelligent, organized, user-friendly, and visually appealing for all learners!
-
 
 
 ## Design
@@ -615,7 +411,7 @@ The following colour palette has been used throughout the StudyCards website:
 
 - **#F4F7FC**: Background color for the body, providing a light and clean look.
 - **#FFFFFF**: Background for cards, forms, and containers to maintain clarity and focus.
-- **#FFC107**: Primary button color (e.g., "Save Flashcard", "Submit"), offering a vibrant and inviting accent.
+- **#FFC107**: Primary button color (e.g., "Save Flashcard", "Submit").
 - **#E0A800**: Button hover effect, providing a smooth, interactive transition.
 - **#333333**: Primary text color for strong readability against light backgrounds.
 - **#666666**: Secondary text color used for less important information, ensuring visual hierarchy.
@@ -623,20 +419,15 @@ The following colour palette has been used throughout the StudyCards website:
 - **#28A745**: Success messages and indicators (e.g., successful login or registration).
 - **#17A2B8**: Highlight elements such as info banners or links for a friendly and modern feel.
 
-The combination of soft backgrounds, strong contrast for text, and vibrant accent colors ensures the platform remains accessible, clean, and visually appealing across devices.
 
 
 
 ### Typography
 The website uses the following font styles for its design:
 - **Roboto**: Used as the general font for the body text across the site.
-![ROBOTO Google Fonts]()
 - **Poppins**: Applied to headings (h1, h2, h3, h4) to draw attention and clearly separates titles and important sections.
-![Poppins Google Fonts]()
 - **Rubik**: Used for special or secondary text to add visual contrast and highlight accent information without overpowering the main content.
-![Rubik Google Fonts]()
-- **Fira Code**: Chosen for code blocks to enhance readability and clarity
-![Fira COde Google Fonts]()
+- **Fira Code**: Chosen for code blocks to enhance readability and clarity.
 
 
 ## Testing
@@ -650,7 +441,7 @@ Detailed information about testing is available in the [Testing Documentation](T
 The Application has been deployed from GitHub to Heroku by following these steps:
 
 1. Create or log in to your account at heroku.com.
-2. Create a new app, add a unique app name (e.g., inventory - management - system) and choose your region.
+2. Create a new app, add a unique app name and choose your region.
 3. Click on create app.
 4. Go to "Settings".
 5. Under Config Vars add a key 'PORT' and value '8000'.
@@ -710,8 +501,12 @@ To deploy the project on your own computer you can clone it:
 
 ### References
 
-- [W3 schools](https://www.w3schools.com/) - For general documentation
-- [ChatGPT](https://openai.com/index/chatgpt/) - For general debugging along with other tools and coding advice
+- [React Documentation - Official](https://react.dev/) — used for understanding React components, hooks, and best practices.
+- [React Router Documentation](https://reactrouter.com/en/main) — Used for handling navigation and route protection between different pages.
+- [Codevolution - React Router DOM Tutorial (YouTube)](https://www.youtube.com/watch?v=Ul3y1LXxzdU) — used to get better understanding of `react-router-dom` for navigation.
+- [Axios Documentation](https://axios-http.com/docs/intro) — used for sending API requests between the front-end and back-end.
+- [W3 schools](https://www.w3schools.com/) - used for general documentation
+- [ChatGPT](https://openai.com/index/chatgpt/) - used for general debugging along with other tools and coding advice
 - [Stackoverflow](https://stackoverflow.com/) - used for general code advice
 
 
