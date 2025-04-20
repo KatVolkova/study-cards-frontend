@@ -73,7 +73,7 @@ function ReviewHistoryServer() {
 
   return (
     <div className={styles.reviewContainer}>
-      <h2 className={styles.header}>📊 Your Review History (from server)</h2>
+      <h2 className={styles.header}>📊 Your Review History</h2>
       {history.length > 0 && (
       <div className={styles.statsBar}>
         <p>🏆 Best Score: <strong>{Number(bestScore).toFixed(2)}%</strong></p>

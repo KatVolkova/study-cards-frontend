@@ -8,15 +8,12 @@ import logo from '../assets/logo.webp';
 function NavigationBar() {
 
   const navigate = useNavigate();
-  // Retrieve token and username from localStorage
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
 
   const handleLogout = () => {
-    // Clear localStorage items on logout
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    // Optionally, redirect to login page or home
     navigate('/login');
   };
   return (

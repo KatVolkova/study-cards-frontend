@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../styles/AuthForm.module.css';
 
 function Login() {
-  // Initialize state with username, email, and password
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -17,7 +16,7 @@ function Login() {
   const navigate = useNavigate();
   
 
-  // Destructure formData for ease of use
+  
   const {username, password } = formData;
 
   const handleChange = (e) => {
@@ -32,7 +31,6 @@ function Login() {
     setLoading(true);
 
     try {
-      // Send a POST request to the login endpoint.
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/auth/login/`,
         formData
@@ -53,7 +51,6 @@ function Login() {
       console.error("Login error:", error);
       const errorMessages = [];
 
-      // If the server responded with errors, consolidate them
       if (error.response) {
         const statusCode = error.response.status;
         const data = error.response.data;

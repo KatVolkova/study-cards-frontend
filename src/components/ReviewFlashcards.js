@@ -80,7 +80,7 @@ function ReviewFlashcards() {
 
   const currentCard = filteredCards[currentIndex] || null;
 
-  // --- Render ---
+  
   if (loading) {
     return (
       <div className={styles.loading}>

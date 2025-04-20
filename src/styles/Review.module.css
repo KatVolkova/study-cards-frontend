@@ -253,32 +253,34 @@
   background-color: #ddd;
 }
 
+/* Media queries */
+
 @media (max-width: 480px) {
-  /* Make the card smaller */
+
   .card {
     padding: 1rem;
     margin: 0.5rem auto;
     width: 90%;
   }
 
-  /* Make the question/answer text smaller */
+  
   .card p {
-    font-size: 1rem; /* or 0.95rem if you want even smaller */
+    font-size: 1rem;
   }
 
-  /* Make the (click to flip) hint smaller */
+  
   .flipHint {
     font-size: 0.85rem;
   }
 
-  /* Make Correct and Incorrect buttons smaller */
+ 
   .correctBtn,
   .incorrectBtn {
     font-size: 0.9rem;
     padding: 0.5rem 0.8rem;
   }
 
-  /* (Optional) Make dropdown filters a little smaller */
+ 
   .filterSelect {
     font-size: 0.9rem;
     padding: 0.4rem;

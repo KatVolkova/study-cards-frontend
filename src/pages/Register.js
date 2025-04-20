@@ -48,21 +48,21 @@ function Register() {
               if (Object.prototype.hasOwnProperty.call(data, key)) {
                 const fieldValue = data[key];
                 if (Array.isArray(fieldValue)) {
-                  // e.g., "username": ["This field is required"]
+                  
                   fieldValue.forEach((msg) => {
                     errorMessages.push(`${key}: ${msg}`);
                   });
                 } else if (typeof fieldValue === "string") {
-                  // e.g., "username": "This field is required"
+                  
                   errorMessages.push(`${key}: ${fieldValue}`);
                 } else {
-                  // fallback for unexpected types
+                 
                   errorMessages.push(`${key}: ${JSON.stringify(fieldValue)}`);
                 }
               }
             }
           } else {
-            // If the response data is not an object, just push it as a string
+            
             errorMessages.push("Bad Request: " + JSON.stringify(data));
           }
         } else if (statusCode === 500) {
@@ -71,7 +71,7 @@ function Register() {
             "Server error (500). Please try again later or contact support."
           );
         } else {
-          // Other status codes (401, 403, 404, etc.)
+          // Other status codes 
           errorMessages.push(
             `Error ${statusCode}: ${JSON.stringify(data) || "Unexpected error"}`
           );
